@@ -1,12 +1,9 @@
 import { Router } from '@shared/ui';
 import { Routes } from '@shared/enums';
+import { Login } from './login/login';
 
 function Words() {
   return <>Words</>;
-}
-
-function Login() {
-  return <>Login</>;
 }
 
 function Profile() {
@@ -32,7 +29,5 @@ export function App() {
     }
   };
 
-  return (
-    <Router routes={routes} />
-  )
+  return <Router routes={routes} />;
 }
