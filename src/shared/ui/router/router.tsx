@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Routes } from '@shared/enums';
+import { AppRoutes } from '@shared/enums';
 import { history } from '@shared/utils';
 
 interface RouterProps {
@@ -8,38 +8,35 @@ interface RouterProps {
     [key: string]: {
       render?: JSX.Element;
       redirect?: string;
-      auth?: boolean;
-      unauth?: boolean;
+      access?: 'auth' | 'unauth';
     }
   }
 }
 
 let init = false;
 
-const isLoggedIn = false;
-
 export function Router({ routes }: RouterProps) {
-  const [path, setPath] = useState(location.pathname);
-
   if (!init) {
     window.addEventListener('pushstate', () => setPath(location.pathname));
     window.addEventListener('popstate', () => setPath(location.pathname));
     init = true;
   }
 
+  const [path, setPath] = useState(location.pathname);
   const route = routes[path] || routes['*'];
+  const loggedIn = !!localStorage['logged'];
 
   if (!route) {
     return null;
   }
 
-  if (route.auth && !isLoggedIn) {
-    history.push(Routes.Login);
+  if (route.access === 'auth' && !loggedIn) {
+    history.push(AppRoutes.Login);
     return null;
   }
 
-  if (route.unauth && isLoggedIn) {
-    history.push(Routes.Home);
+  if (route.access === 'unauth' && loggedIn) {
+    history.push(AppRoutes.Home);
     return null;
   }
 
