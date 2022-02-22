@@ -5,6 +5,7 @@ import './login.less';
 
 export function Login() {
   const [data, setData] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     const target = event.target
@@ -15,7 +16,7 @@ export function Login() {
 
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
-    console.log(data);
+    setLoading(true);
   }
 
   function canSubmit(): boolean {
@@ -38,7 +39,7 @@ export function Login() {
         placeholder="Password"
         onChange={handleChange}
       />
-      <Button text="Login" disabled={!canSubmit()} />
+      <Button text="Login" disabled={!canSubmit()} loading={loading}/>
     </form>
   );
 }
