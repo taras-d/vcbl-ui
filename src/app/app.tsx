@@ -1,4 +1,4 @@
-import { Router } from '@shared/ui';
+import { Router, AlertContainer } from '@shared/ui';
 import { AppRoutes } from '@shared/enums';
 import { Login } from './login/login';
 import { Words } from './words/words';
@@ -25,6 +25,7 @@ export function App() {
           redirect: '/'
         }
       }} />
+      <AlertContainer />
     </div>
   );
 }

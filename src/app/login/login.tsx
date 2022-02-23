@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-import { Input, Button } from '@shared/ui';
+import { Input, Button, Modal } from '@shared/ui';
 import './login.less';
 
 export function Login() {
@@ -17,6 +17,10 @@ export function Login() {
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
     setLoading(true);
+    setTimeout(() => {
+      Modal.alert('Login failed', 'Email or password incorrect');
+      setLoading(false);
+    }, 1000);
   }
 
   function canSubmit(): boolean {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { AppRoutes } from '@shared/enums';
-import { history } from '@shared/utils';
+import { history, listen } from '@shared/utils';
 
 interface RouterProps {
   routes: {
@@ -17,8 +17,8 @@ let init = false;
 
 export function Router({ routes }: RouterProps) {
   if (!init) {
-    window.addEventListener('pushstate', () => setPath(location.pathname));
-    window.addEventListener('popstate', () => setPath(location.pathname));
+    listen('pushstate', () => setPath(location.pathname));
+    listen('popstate', () => setPath(location.pathname));
     init = true;
   }
 
