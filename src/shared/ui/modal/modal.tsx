@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
+import { classes } from '@shared/utils';
 import './modal.less';
 
 interface ModalProps {
@@ -41,8 +42,10 @@ export function Modal({
     }
   }
 
+  const rootClassName = classes('modal', className);
+
   const modal = (
-    <div className={`modal ${className}`} onClick={handleModalClick}>
+    <div className={rootClassName} onClick={handleModalClick}>
       <div className="modal-inner">
         <div className="modal-box">
           {header && (

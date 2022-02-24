@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { AlertOptions } from '@shared/interfaces';
 import { listen } from '@shared/utils';
-import { Modal, Button } from '..';
+import { Modal, Button } from '@shared/ui';
 import './alert-container.less';
 
 export function AlertContainer() {
