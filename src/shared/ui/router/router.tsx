@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AppRoutes } from '@shared/enums';
 import { history, listen } from '@shared/utils';
@@ -13,14 +13,15 @@ interface RouterProps {
   }
 }
 
-let init = false;
-
 export function Router({ routes }: RouterProps) {
-  if (!init) {
-    listen('pushstate', () => setPath(location.pathname));
-    listen('popstate', () => setPath(location.pathname));
-    init = true;
-  }
+  useEffect(() => {
+    const unlistenPush = listen('pushstate', () => setPath(location.pathname));
+    const unlistenPop = listen('popstate', () => setPath(location.pathname));
+    return () => {
+      unlistenPush();
+      unlistenPop();
+    }
+  }, []);
 
   const [path, setPath] = useState(location.pathname);
   const route = routes[path] || routes['*'];

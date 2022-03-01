@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { Input, Button, Modal } from '@shared/ui';
 import { ApiResponse } from "@shared/interfaces";
 import { api } from '@shared/api';
+import { useAbortController } from "@shared/hooks";
 import './login.less';
 
 export function Login() {
   const [data, setData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const loginAbort = useAbortController();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     const target = event.target
@@ -21,8 +23,12 @@ export function Login() {
 
     event.preventDefault();
 
-    api.login(data)
+    api.login(data, loginAbort.signal())
       .catch((res: ApiResponse) => {
+        if (res.error?.name === 'AbortError') {
+          return;
+        }
+
         setLoading(false);
         Modal.alert(
           'Login failed',

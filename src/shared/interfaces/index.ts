@@ -6,7 +6,8 @@ export interface AlertOptions {
 export interface ApiRequest {
   method?: string;
   path: string;
-  body?: unknown
+  body?: unknown;
+  signal?: AbortSignal;
 }
 
 export interface ApiResponse {

@@ -35,12 +35,13 @@ function request(params: ApiRequest): Promise<unknown> {
     body: JSON.stringify(params.body),
     headers: {
       'content-type': 'application/json'
-    }
+    },
+    signal: params.signal,
   }).then(handleResponse, handleError);
 }
 
-function login(body: LoginRequest): Promise<void> {
-  return request({ method: 'post', path: 'authentication', body })
+function login(body: LoginRequest, signal?: AbortSignal): Promise<void> {
+  return request({ method: 'post', path: 'authentication', body, signal })
     .then((res: ApiResponse) => {
       console.log(res.body);
       history.push(AppRoutes.Home);
