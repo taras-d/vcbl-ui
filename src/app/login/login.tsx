@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import { Input, Button, Modal } from '@shared/ui';
+import { ApiResponse } from "@shared/interfaces";
+import { api } from '@shared/api';
 import './login.less';
 
 export function Login() {
@@ -15,12 +17,18 @@ export function Login() {
   }
 
   function handleSubmit(event: React.SyntheticEvent): void {
-    event.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      Modal.alert('Login failed', 'Email or password incorrect');
-      setLoading(false);
-    }, 1000);
+
+    event.preventDefault();
+
+    api.login(data)
+      .catch((res: ApiResponse) => {
+        setLoading(false);
+        Modal.alert(
+          'Login failed',
+          res.status === 401 ? 'Email or password incorrect' : 'Something went wrong'
+        );
+      });
   }
 
   function canSubmit(): boolean {
