@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { AppRoutes } from '@shared/enums';
-import { history, listen } from '@shared/utils';
+import { history, listen, currentUser } from '@shared/utils';
 
 interface RouterProps {
   routes: {
@@ -25,7 +25,7 @@ export function Router({ routes }: RouterProps) {
 
   const [path, setPath] = useState(location.pathname);
   const route = routes[path] || routes['*'];
-  const loggedIn = !!localStorage['logged'];
+  const loggedIn = !!currentUser.token;
 
   if (!route) {
     return null;

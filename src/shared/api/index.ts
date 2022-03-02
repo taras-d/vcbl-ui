@@ -5,7 +5,7 @@ import {
   LoginRequest,
   LoginResponse
 } from '@shared/interfaces';
-import { history } from '@shared/utils';
+import { history, currentUser } from '@shared/utils';
 
 const apiUrl = 'https://vcbl.herokuapp.com';
 
@@ -43,11 +43,16 @@ function request(params: ApiRequest): Promise<unknown> {
 function login(body: LoginRequest, signal?: AbortSignal): Promise<void> {
   return request({ method: 'post', path: 'authentication', body, signal })
     .then((res: ApiResponse) => {
-      console.log(res.body);
+      currentUser.save(res.body as LoginResponse);
       history.push(AppRoutes.Home);
     });
 }
 
+function logout(): void {
+  currentUser.remove();
+}
+
 export const api = {
   login,
+  logout,
 }

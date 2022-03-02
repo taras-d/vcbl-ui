@@ -3,6 +3,13 @@ export interface AlertOptions {
   text: string;
 }
 
+export interface User {
+  _id: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ApiRequest {
   method?: string;
   path: string;
@@ -22,5 +29,6 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  
+  accessToken: string;
+  user: User;
 }
