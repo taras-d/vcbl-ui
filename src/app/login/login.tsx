@@ -25,7 +25,7 @@ export function Login() {
 
     api.login(data, loginAbort.signal())
       .catch((res: ApiResponse) => {
-        if (res.error?.name === 'AbortError') {
+        if (res.aborted) {
           return;
         }
 

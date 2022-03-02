@@ -21,6 +21,7 @@ export interface ApiResponse {
   status?: number;
   body?: unknown;
   error?: Error;
+  aborted?: boolean;
 }
 
 export interface LoginRequest {

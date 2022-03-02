@@ -12,11 +12,8 @@ const apiUrl = 'https://vcbl.herokuapp.com';
 function handleResponse(response: Response): Promise<ApiResponse> {
   return response.json()
     .then((body: unknown) => {
-      return {
-        status: response.status, body
-      };
-    })
-    .then((apiRes: ApiResponse) => {
+      const apiRes = { status: response.status, body };
+
       if (response.ok) {
         return apiRes;
       }
@@ -26,7 +23,10 @@ function handleResponse(response: Response): Promise<ApiResponse> {
 }
 
 function handleError(error: Error): Promise<ApiResponse> {
-  return Promise.reject({ error });
+  return Promise.reject({
+    error,
+    aborted: error.name === 'AbortError'
+  });
 }
 
 function request(params: ApiRequest): Promise<unknown> {
