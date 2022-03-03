@@ -11,3 +11,18 @@ body {
 *:before {
   box-sizing: border-box;
 }
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.columns(@n, @i: 1) when (@i <= @n) {
+  .col-@{i} {
+    width: @i * (100% / @n);
+  }
+  .columns(@n, @i + 1);
+}
+
+.columns(12);
