@@ -50,6 +50,7 @@ function login(body: LoginRequest, signal?: AbortSignal): Promise<void> {
 
 function logout(): void {
   currentUser.remove();
+  history.push(AppRoutes.Login);
 }
 
 export const api = {

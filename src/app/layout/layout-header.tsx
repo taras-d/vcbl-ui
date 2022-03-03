@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { history } from '@shared/utils';
 import './layout-header.less';
 import { AppRoutes } from '@shared/enums';
+import { Select } from '@shared/ui';
 
 export function LayoutHeader() {
   const [value, setValue] = useState(location.pathname);
@@ -17,10 +18,10 @@ export function LayoutHeader() {
 
   return (
     <div className="layout-header">
-      <select value={value} onChange={handleValueChange}>
+      <Select value={value} onChange={handleValueChange}>
         <option value={AppRoutes.Home}>Vocabulary</option>
         <option value={AppRoutes.Profile}>Profile</option>
-      </select>
+      </Select>
     </div>
   );
 }
