@@ -1,10 +1,15 @@
 import { Input } from '@shared/ui';
-import { currentUser } from '@shared/utils';
+import { currentUser, formatDate } from '@shared/utils';
+import { useMemo } from 'react';
 
 import './profile.less';
 
 export function Profile() {
   const user = currentUser.user;
+
+  const [created, updated] = useMemo(() => {
+    return [formatDate(user.createdAt), formatDate(user.updatedAt)];
+  }, []);
 
   return (
     <div className="profile">
@@ -17,13 +22,13 @@ export function Profile() {
       <div className="row">
         <div className="col-3">Created</div>
         <div className="col-9">
-          <Input defaultValue={user.createdAt} disabled />
+          <Input defaultValue={created} disabled />
         </div>
       </div>
       <div className="row">
         <div className="col-3">Updated</div>
         <div className="col-9">
-          <Input defaultValue={user.updatedAt} disabled />
+          <Input defaultValue={updated} disabled />
         </div>
       </div>
     </div>
