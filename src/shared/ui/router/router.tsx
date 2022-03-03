@@ -1,45 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
-import { AppRoutes } from '@shared/enums';
-import { history, currentUser } from '@shared/utils';
+import { history } from '@shared/utils';
+export { Route } from './route';
 
 interface RouterProps {
   routes: {
-    [key: string]: {
-      render?: JSX.Element;
-      redirect?: string;
-      access?: 'auth' | 'unauth';
-    }
+    [key: string]: JSX.Element;
   }
 }
 
 export function Router({ routes }: RouterProps) {
-  useEffect(() => {
-    return history.listen(() => setPath(location.pathname));
-  }, []);
-
+  const unlisten = useRef<() => void>();
   const [path, setPath] = useState(location.pathname);
-  const route = routes[path] || routes['*'];
-  const loggedIn = !!currentUser.token;
 
-  if (!route) {
-    return null;
+  if (!unlisten.current) {
+    unlisten.current = history.listen(() => setPath(location.pathname));
   }
 
-  if (route.access === 'auth' && !loggedIn) {
-    history.push(AppRoutes.Login);
-    return null;
-  }
+  useEffect(() => unlisten.current, []);
 
-  if (route.access === 'unauth' && loggedIn) {
-    history.push(AppRoutes.Home);
-    return null;
-  }
-
-  if (route.redirect) {
-    history.push(route.redirect);
-    return null;
-  }
-
-  return route.render;
+  return routes[path] || routes['*'] || null;
 }

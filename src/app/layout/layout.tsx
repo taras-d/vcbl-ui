@@ -2,14 +2,14 @@ import { LayoutHeader } from './layout-header';
 import './layout.less';
 
 interface LayoutProps {
-  render: JSX.Element;
+  children: React.ReactNode;
 }
 
-export function Layout({ render }: LayoutProps) {
+export function Layout({ children }: LayoutProps) {
   return (
     <div className="layout">
       <LayoutHeader />
-      <div className="layout-content">{render}</div>
+      <div className="layout-content">{children}</div>
     </div>
   );
 }
