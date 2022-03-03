@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { AlertOptions } from '@shared/interfaces';
-import { listen } from '@shared/utils';
 import { Modal, Button } from '@shared/ui';
 import './alert-container.less';
 
@@ -9,9 +8,12 @@ export function AlertContainer() {
   const [options, setOptions] = useState<AlertOptions>(null);
 
   useEffect(() => {
-    return listen('show-alert', (event: CustomEvent) => {
+    function showAlert(event: CustomEvent): void {
       setOptions(event.detail);
-    });
+    }
+
+    window.addEventListener('show-alert', showAlert);
+    return () => window.removeEventListener('show-alert', showAlert);
   }, []);
 
   const closeAlert = () => setOptions(null);

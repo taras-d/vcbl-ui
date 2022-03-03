@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { AppRoutes } from '@shared/enums';
-import { history, listen, currentUser } from '@shared/utils';
+import { history, currentUser } from '@shared/utils';
 
 interface RouterProps {
   routes: {
@@ -15,12 +15,7 @@ interface RouterProps {
 
 export function Router({ routes }: RouterProps) {
   useEffect(() => {
-    const unlistenPush = listen('pushstate', () => setPath(location.pathname));
-    const unlistenPop = listen('popstate', () => setPath(location.pathname));
-    return () => {
-      unlistenPush();
-      unlistenPop();
-    }
+    return history.listen(() => setPath(location.pathname));
   }, []);
 
   const [path, setPath] = useState(location.pathname);
