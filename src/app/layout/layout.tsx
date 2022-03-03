@@ -1,3 +1,4 @@
+import { LayoutHeader } from './layout-header';
 import './layout.less';
 
 interface LayoutProps {
@@ -7,7 +8,7 @@ interface LayoutProps {
 export function Layout({ render }: LayoutProps) {
   return (
     <div className="layout">
-      <div className="layout-header"></div>
+      <LayoutHeader />
       <div className="layout-content">{render}</div>
     </div>
   );
