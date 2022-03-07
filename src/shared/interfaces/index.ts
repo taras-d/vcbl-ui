@@ -15,6 +15,7 @@ export interface ApiRequest {
   path: string;
   body?: unknown;
   signal?: AbortSignal;
+  query?: Record<string, unknown>;
 }
 
 export interface ApiResponse {
@@ -32,4 +33,25 @@ export interface LoginRequest {
 export interface LoginResponse {
   accessToken: string;
   user: User;
+}
+
+export interface Word {
+  _id: string;
+  text: string;
+  translation: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface WordsListRequest {
+  limit?: number;
+  skip?: number;
+  search?: string;
+}
+
+export interface WordsListResponse {
+  data: Word[];
+  limit: number;
+  skip: number;
+  total: number;
 }
