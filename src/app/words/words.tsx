@@ -34,9 +34,10 @@ export function Words() {
         setLoading(false);
       })
       .catch((res: ApiResponse) => {
-        if (!res.aborted) {
-          Modal.alert('Error', 'Something went wrong');
+        if (res.aborted) {
+          return;
         }
+
         setLoading(false);
       });
   }

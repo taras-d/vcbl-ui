@@ -2,6 +2,7 @@ import {
   ApiRequest,
   ApiResponse,
 } from '@shared/interfaces';
+import { Modal } from '@shared/ui';
 import { currentUser } from '@shared/utils';
 
 const apiUrl = 'https://vcbl.herokuapp.com';
@@ -19,11 +20,23 @@ function handleResponse(response: Response): Promise<ApiResponse> {
     });
 }
 
-function handleError(error: Error): Promise<ApiResponse> {
-  return Promise.reject({
-    error,
-    aborted: error.name === 'AbortError'
-  });
+function handleError(error: Error | ApiResponse, params: ApiRequest): Promise<ApiResponse> {
+  let apiResponse: ApiResponse;
+
+  if (error instanceof Error) {
+    apiResponse = {
+      error,
+      aborted: error.name === 'AbortError'
+    }
+  } else {
+    apiResponse = error;
+  }
+
+  if (!apiResponse.aborted && !params.hideError) {
+    Modal.alert('Error', 'Something went wrong');
+  }
+
+  return Promise.reject(apiResponse);
 }
 
 function getQueryParams(query: Record<string, unknown>): string {
@@ -63,5 +76,7 @@ export function request(params: ApiRequest): Promise<ApiResponse> {
     body: JSON.stringify(params.body),
     headers: getHeaders(),
     signal: params.signal,
-  }).then(handleResponse, handleError);
+  })
+  .then(handleResponse)
+  .catch(err => handleError(err, params));
 }

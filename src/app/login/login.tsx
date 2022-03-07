@@ -29,11 +29,11 @@ export function Login() {
           return;
         }
 
+        if (res.status === 401) {
+          Modal.alert('Login failed', 'Email or password incorrect');
+        }
+        
         setLoading(false);
-        Modal.alert(
-          'Login failed',
-          res.status === 401 ? 'Email or password incorrect' : 'Something went wrong'
-        );
       });
   }
 

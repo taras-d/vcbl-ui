@@ -16,6 +16,7 @@ export interface ApiRequest {
   body?: unknown;
   signal?: AbortSignal;
   query?: Record<string, unknown>;
+  hideError?: boolean;
 }
 
 export interface ApiResponse {
