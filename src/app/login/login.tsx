@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Input, Button, Modal } from '@shared/ui';
 import { ApiResponse } from "@shared/interfaces";
-import { api } from '@shared/api';
+import { authApi } from '@shared/api';
 import { useAbortController } from "@shared/hooks";
 import './login.less';
 
@@ -23,7 +23,7 @@ export function Login() {
 
     event.preventDefault();
 
-    api.login(data, loginAbort.signal())
+    authApi.login(data, loginAbort.signal())
       .catch((res: ApiResponse) => {
         if (res.aborted) {
           return;

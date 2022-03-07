@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 
 import { Input, Select, Button } from '@shared/ui';
 import { currentUser, formatDate } from '@shared/utils';
-import { api } from '@shared/api';
+import { authApi } from '@shared/api/auth-api';
 
 import './profile.less';
 
@@ -25,7 +25,7 @@ export function Profile() {
   }
 
   function handleLogoutClick(): void {
-    api.logout();
+    authApi.logout();
   }
 
   return (
