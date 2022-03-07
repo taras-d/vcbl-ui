@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 export function Button({ text, disabled, loading, onClick, className }: ButtonProps) {
-  const rootClassName = classes('button', className, { loading });
+  const rootClassName = classes('base-input', 'button', className, { loading });
   return (
     <button className={rootClassName} disabled={disabled || loading} onClick={onClick}>
       <div className="button-text">{text}</div>

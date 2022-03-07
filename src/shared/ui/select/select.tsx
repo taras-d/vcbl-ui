@@ -9,7 +9,7 @@ interface SelectProps {
 
 export function Select({ value, onChange, disabled, children }: SelectProps) {
   return (
-    <select className="select" value={value} onChange={onChange} disabled={disabled}>
+    <select className="base-input select" value={value} onChange={onChange} disabled={disabled}>
       {children}
     </select>
   );

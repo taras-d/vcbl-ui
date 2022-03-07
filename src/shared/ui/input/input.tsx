@@ -13,7 +13,7 @@ interface InputProps {
 export function Input({ name, value, defaultValue, type, placeholder, disabled, onChange }: InputProps) {
   return (
     <input
-      className="input"
+      className="base-input input"
       value={value}
       defaultValue={defaultValue}
       type={type}
