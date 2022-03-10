@@ -4,7 +4,7 @@ import { Modal } from '@shared/ui';
 interface WordDelete {
   word: Word;
   onClose: () => void;
-  onDeleted: () => void;
+  onDeleted: (word: Word) => void;
 }
 
 export function WordDelete({ word, onClose }: WordDelete) {

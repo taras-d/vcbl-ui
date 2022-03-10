@@ -1,26 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Modal, Button } from '@shared/ui';
 import { Word } from '@shared/interfaces';
+import { events } from '@shared/utils';
 import { WordEdit } from './word-edit/word-edit';
 import { WordDelete } from './word-delete/word-delete';
 import './word-actions.less';
 
 interface WordActionsProps {
-  word: Word;
-  onClose: () => void;
   onEdited: (newWord: Word) => void;
-  onDeleted: () => void;
+  onDeleted: (word: Word) => void;
 }
 
 type ActionType = 'options' | 'edit' | 'delete';
 
-export function WordActions({ word, onClose, onEdited, onDeleted}: WordActionsProps) {
+export function WordActions({ onEdited, onDeleted}: WordActionsProps) {
+  const [word, setWord] = useState<Word>(null);
   const [action, setAction] = useState<ActionType>('options');
 
+  useEffect(() => {
+    return events.listen('show-word-actions', (word: Word) => setWord(word));
+  }, []);
+
   function handleClose(): void {
+    setWord(null);
     setAction(null);
-    onClose();
   }
 
   if (!word) {

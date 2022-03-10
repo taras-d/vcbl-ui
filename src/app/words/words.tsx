@@ -2,11 +2,12 @@ import { useEffect, useState, useRef } from 'react';
 
 import { wordsApi } from '@shared/api/words-api';
 import { ApiResponse, Word, WordsListResponse } from '@shared/interfaces';
-import { Button, Modal, Spinner } from '@shared/ui';
+import { Button, Spinner } from '@shared/ui';
+import { events } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
 import { WordsList } from './words-list/words-list'
-import './words.less';
 import { WordActions } from './word-actions/word-actions';
+import './words.less';
 
 const limit = 15;
 
@@ -16,7 +17,6 @@ export function Words() {
   const [data, setData] = useState<Word[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [activeWord, setActiveWord] = useState(null);
 
   useEffect(() => {
     loadData();
@@ -50,19 +50,15 @@ export function Words() {
   }
 
   function handleWordClick(word: Word): void {
-    setActiveWord(word);
-  }
-
-  function handleWordClose(): void {
-    setActiveWord(null);
+    events.trigger('show-word-actions', word);
   }
 
   function handleWordEdited(newWord: Word): void {
     console.log('edited', newWord);
   }
 
-  function handleWordDeleted(): void {
-    console.log('deleted', activeWord);
+  function handleWordDeleted(word: Word): void {
+    console.log('deleted', word);
   }
 
   return (
@@ -80,8 +76,6 @@ export function Words() {
       )}
 
       <WordActions
-        word={activeWord}
-        onClose={handleWordClose}
         onEdited={handleWordEdited}
         onDeleted={handleWordDeleted}
       />
