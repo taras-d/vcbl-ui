@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import { classes } from '@shared/utils';
+import { classes, events } from '@shared/utils';
 import './modal.less';
 
 interface ModalProps {
@@ -63,7 +63,5 @@ export function Modal({
 }
 
 Modal.alert = (title: string, text: string ): void => {
-  window.dispatchEvent(new CustomEvent('show-alert', {
-    detail: { title, text }
-  }));
+  events.trigger('show-alert', { title, text });
 }
