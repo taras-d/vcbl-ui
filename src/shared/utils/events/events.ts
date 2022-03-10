@@ -1,13 +1,21 @@
-const eventTarget = new EventTarget();
+type Handler = (...args: unknown[]) => void;
 
-function listen(name: string, handler: (...args: unknown[]) => void): () => void {
-  const listener = (event: CustomEvent): void => handler(...event.detail)
-  eventTarget.addEventListener(name, listener);
-  return () => eventTarget.removeEventListener(name, listener);
+const map: Record<string, Handler[]> = {};
+
+function listen(name: string, fn: Handler): () => void {
+  let fns = map[name];
+
+  if (fns) {
+    fns.push(fn);
+  } else {
+    map[name] = fns = [fn];
+  }
+
+  return () => fns.splice(fns.indexOf(fn), 1);
 }
 
 function trigger(name: string, ...args: unknown[]): void {
-  eventTarget.dispatchEvent(new CustomEvent(name, { detail: args }));
+  map[name]?.forEach(fn => fn(...args));
 }
 
 export const events = {
