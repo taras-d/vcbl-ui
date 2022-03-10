@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { classes, events } from '@shared/utils';
@@ -23,9 +23,18 @@ export function Modal({
   className = '',
   onClose 
 }: ModalProps) {
+  const modalRef = useRef<HTMLDivElement>();
+
   useEffect(() => {
-    if (closeByEsc) {
-      const handleKeyUp = (event: KeyboardEvent) => event.key === 'Escape' && onClose?.();
+    if (closeByEsc && onClose) {
+      const handleKeyUp = (event: KeyboardEvent) => {
+        if (
+          event.key === 'Escape' && 
+          document.querySelector('.modal:last-child') === modalRef.current
+        ) {
+          onClose();
+        }
+      };
       window.addEventListener('keyup', handleKeyUp);
       return () => window.removeEventListener('keyup', handleKeyUp);
     }
@@ -45,7 +54,7 @@ export function Modal({
   const rootClassName = classes('modal', className);
 
   const modal = (
-    <div className={rootClassName} onClick={handleModalClick}>
+    <div className={rootClassName} onClick={handleModalClick} ref={modalRef}>
       <div className="modal-inner">
         <div className="modal-box">
           {header && (
