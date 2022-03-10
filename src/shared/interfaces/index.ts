@@ -42,6 +42,8 @@ export interface Word {
   translation: string;
   createdAt: string;
   updatedAt: string;
+  translateLink: string;
+  imagesLink: string;
 }
 
 export interface WordsListRequest {

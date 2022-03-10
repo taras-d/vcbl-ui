@@ -18,6 +18,8 @@ export function Words() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const empty = data.length === 0;
+
   useEffect(() => {
     loadData();
   }, []);
@@ -53,32 +55,36 @@ export function Words() {
     events.trigger('show-word-actions', word);
   }
 
-  function handleWordEdited(newWord: Word): void {
-    console.log('edited', newWord);
+  function handleWordEdited(word: Word): void {
+    setData(data.map((item: Word) => item._id === word._id ? word : item));
   }
 
   function handleWordDeleted(word: Word): void {
-    console.log('deleted', word);
+    setData(data.filter((item: Word) => item !== word));
   }
 
   return (
     <div className="words">
-      <WordsList
-        words={data}
-        onWordClick={handleWordClick}
-      />
-      {loading && !data.length && <Spinner />}
-      {!loading && !data.length && (
-        <div className="no-words">No words</div>
+      {!empty && (
+        <>
+          <WordsList
+            words={data}
+            onWordClick={handleWordClick}
+          />
+          <WordActions
+            onEdited={handleWordEdited}
+            onDeleted={handleWordDeleted}
+          />
+        </>
       )}
+
+      {loading && empty && <Spinner />}
+
+      {!loading && empty && <div className="no-words">No words</div>}
+
       {total > data.length && (
         <Button className="show-more" text="Show more" loading={loading} onClick={handleShowMoreClick} />
       )}
-
-      <WordActions
-        onEdited={handleWordEdited}
-        onDeleted={handleWordDeleted}
-      />
     </div>
   );
 }

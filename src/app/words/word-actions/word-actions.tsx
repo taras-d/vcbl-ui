@@ -8,7 +8,7 @@ import { WordDelete } from './word-delete/word-delete';
 import './word-actions.less';
 
 interface WordActionsProps {
-  onEdited: (newWord: Word) => void;
+  onEdited: (word: Word) => void;
   onDeleted: (word: Word) => void;
 }
 
@@ -16,10 +16,13 @@ type ActionType = 'options' | 'edit' | 'delete';
 
 export function WordActions({ onEdited, onDeleted}: WordActionsProps) {
   const [word, setWord] = useState<Word>(null);
-  const [action, setAction] = useState<ActionType>('options');
+  const [action, setAction] = useState<ActionType>(null);
 
   useEffect(() => {
-    return events.listen('show-word-actions', (word: Word) => setWord(word));
+    return events.listen('show-word-actions', (word: Word) => {
+      setWord(word);
+      setAction('options');
+    });
   }, []);
 
   function handleClose(): void {
@@ -42,14 +45,15 @@ export function WordActions({ onEdited, onDeleted}: WordActionsProps) {
   return (
     <Modal
       className="word-actions"
-      open={true}
       header={word.text}
       onClose={handleClose}
     >
-      <Button text="Edit word" onClick={() => setAction('edit')} />
-      <Button text="Delete word" onClick={() => setAction('delete')} />
-      <Button text="Translate"/>
-      <Button text="Search images"/>
+      <div className="options">
+        <Button text="Edit word" onClick={() => setAction('edit')}/>
+        <Button text="Delete word" onClick={() => setAction('delete')}/>
+        <Button text="Translate" onClick={() => window.open(word.translateLink)}/>
+        <Button text="Search images" onClick={() => window.open(word.imagesLink)}/>
+      </div>
     </Modal>
   );
 }

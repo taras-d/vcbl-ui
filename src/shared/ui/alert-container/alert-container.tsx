@@ -16,7 +16,6 @@ export function AlertContainer() {
 
   return options && (
     <Modal
-      open={true}
       className="alert"
       header={options.title}
       onClose={closeAlert}>

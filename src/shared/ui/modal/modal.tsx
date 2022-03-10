@@ -15,7 +15,7 @@ interface ModalProps {
 }
 
 export function Modal({
-  open,
+  open = true,
   header,
   children,
   closeByEsc = true,
