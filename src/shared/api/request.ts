@@ -72,7 +72,7 @@ export function request(params: ApiRequest): Promise<ApiResponse> {
   const url = `${apiUrl}/${params.path}${getQueryParams(params.query)}`;
 
   return fetch(url, {
-    method: params.method,
+    method: params.method?.toUpperCase(),
     body: JSON.stringify(params.body),
     headers: getHeaders(),
     signal: params.signal,

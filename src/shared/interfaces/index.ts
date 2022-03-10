@@ -58,3 +58,9 @@ export interface WordsListResponse {
   skip: number;
   total: number;
 }
+
+export interface WordUpdateRequest {
+  id: string;
+  text: string;
+  translation: string;
+}
