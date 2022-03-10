@@ -50,9 +50,9 @@ export function WordActions({ onEdited, onDeleted}: WordActionsProps) {
     >
       <div className="options">
         <Button text="Edit word" onClick={() => setAction('edit')}/>
-        <Button text="Delete word" onClick={() => setAction('delete')}/>
         <Button text="Translate" onClick={() => window.open(word.translateLink)}/>
         <Button text="Search images" onClick={() => window.open(word.imagesLink)}/>
+        <Button text="Delete word" onClick={() => setAction('delete')}/>
       </div>
     </Modal>
   );

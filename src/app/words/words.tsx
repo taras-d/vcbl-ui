@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 
-import { wordsApi } from '@shared/api/words-api';
+import { wordsApi } from '@shared/api';
 import { ApiResponse, Word, WordsListResponse } from '@shared/interfaces';
 import { Button, Spinner } from '@shared/ui';
 import { events } from '@shared/utils';
@@ -8,8 +8,6 @@ import { useAbortController } from '@shared/hooks';
 import { WordsList } from './words-list/words-list'
 import { WordActions } from './word-actions/word-actions';
 import './words.less';
-
-const limit = 15;
 
 export function Words() {
   const dataAbort = useAbortController();
@@ -27,11 +25,7 @@ export function Words() {
   function loadData(): void {
     setLoading(true);
 
-    wordsApi.getWords({
-      skip: skipRef.current,
-      limit,
-      signal: dataAbort.signal(),
-    })
+    wordsApi.getWords({ skip: skipRef.current }, dataAbort.signal())
       .then((res: WordsListResponse) => {
         setData([...data, ...res.data]);
         setTotal(res.total);
@@ -61,6 +55,7 @@ export function Words() {
 
   function handleWordDeleted(word: Word): void {
     setData(data.filter((item: Word) => item !== word));
+    setTotal(total - 1);
   }
 
   return (

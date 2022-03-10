@@ -50,7 +50,6 @@ export interface WordsListRequest {
   limit?: number;
   skip?: number;
   search?: string;
-  signal?: AbortSignal;
 }
 
 export interface WordsListResponse {
