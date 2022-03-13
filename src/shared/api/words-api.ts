@@ -45,7 +45,7 @@ function deleteWord(id: string, signal?: AbortSignal): Promise<void> {
 }
 
 function decorateWord(word: Word): Word {
-  word.translateLink = `https://translate.google.com/?#en/auto/${word.text}`;
+  word.translateLink = `https://translate.google.com/?sl=en&tl=uk&text=${word.text}`;
   word.imagesLink = `https://www.google.com/search?tbm=isch&q=${word.text}`;
   return word;
 }

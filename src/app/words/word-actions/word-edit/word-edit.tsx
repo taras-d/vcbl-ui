@@ -4,6 +4,7 @@ import { Word } from '@shared/interfaces';
 import { Modal, Button, Input } from '@shared/ui';
 import { wordsApi } from '@shared/api';
 import { useAbortController } from '@shared/hooks';
+import './word-edit.less';
 
 interface WordDelete {
   word: Word;
@@ -52,16 +53,46 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
 
   return (
     <Modal
-      header={`Edit word - "${word.text}"`}
+      className="word-edit"
+      header="Edit word"
       onClose={onClose}
     >
       <form autoCapitalize="off" onSubmit={handleSubmit}>
-
-        <Input name="text" value={data.text} onChange={handleChange} />
-
-        <Input name="translation" value={data.translation} onChange={handleChange} />
-        
-        <Button text="Save" loading={loading} disabled={!valid}/>
+        <div className="row">
+          <div className="col-4">
+            Text
+          </div>
+          <div className="col-8">
+            <Input name="text" value={data.text} onChange={handleChange} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-4">
+            Translation
+          </div>
+          <div className="col-8">
+            <Input name="translation" value={data.translation} onChange={handleChange} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-4">
+            Created
+          </div>
+          <div className="col-8">
+            <Input name="created" defaultValue="" disabled />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-4">
+            Updated
+          </div>
+          <div className="col-8">
+            <Input name="translation" defaultValue="" disabled />
+          </div>
+        </div>
+        <div className="edit-buttons">
+          <Button text="Save" loading={loading} disabled={!valid}/>
+        </div>
       </form>
     </Modal>
   );
