@@ -104,7 +104,7 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
             <Input name="translation" defaultValue={updated} disabled />
           </div>
         </div>
-        <div className="edit-buttons">
+        <div className="edit-button">
           <Button text="Save" loading={loading} disabled={!valid}/>
         </div>
       </form>

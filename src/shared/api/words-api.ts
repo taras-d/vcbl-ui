@@ -4,6 +4,7 @@ import {
   WordsListResponse,
   Word,
   WordUpdateRequest,
+  NewWord,
 } from "@shared/interfaces";
 import { request } from "./request";
 
@@ -22,6 +23,15 @@ function getWords(params: WordsListRequest, signal?: AbortSignal): Promise<Words
     const body = res.body as WordsListResponse;
     body.data.forEach(decorateWord);
     return body;
+  });
+}
+
+function createWord(words: NewWord[], signal?: AbortSignal) {
+  return request({
+    method: 'post',
+    path: 'words',
+    signal,
+    body: words,
   });
 }
 
@@ -52,6 +62,7 @@ function decorateWord(word: Word): Word {
 
 export const wordsApi = {
   getWords,
+  createWord,
   updateWord,
   deleteWord,
 };

@@ -2,18 +2,16 @@ import React, { useEffect, useState, useMemo } from 'react';
 
 import { Modal, Input, Button } from '@shared/ui';
 import { events } from '@shared/utils';
-import { Word, EventTypes } from '@shared/interfaces';
+import { EventTypes, NewWord, ApiResponse } from '@shared/interfaces';
+import { useAbortController } from '@shared/hooks';
+import { wordsApi } from '@shared/api';
 import './word-add.less';
 
-type NewWord = Partial<Word>;
-
 export function WordAdd() {
+  const abortCreate = useAbortController();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [words, setWords] = useState<NewWord[]>([
-    { text: '', translation: '' },
-    { text: '', translation: '' },
-  ]);
+  const [words, setWords] = useState<NewWord[]>(() => getInitialData());
 
   useEffect(() => {
     return events.listen(EventTypes.showWordAdd, () => setOpen(true));
@@ -21,12 +19,17 @@ export function WordAdd() {
 
   const valid = useMemo(() => words.some(word => word.text.trim()), [words]);
 
+  function getInitialData(): NewWord[] {
+    return [
+      { text: '', translation: '' },
+      { text: '', translation: '' },
+    ];
+  }
+
   function handleInputChange(event: React.SyntheticEvent, index: number): void {
     const target = event.target as HTMLInputElement;
     const data = [...words];
-
     data[index] = { ...data[index], [target.name]: target.value };
-
     setWords(data);
   }
 
@@ -52,10 +55,21 @@ export function WordAdd() {
     setLoading(true);
 
     const data = words.filter(word => word.text.trim());
-    console.log(data);
+    wordsApi.createWord(data, abortCreate.signal())
+      .then(() => {
+        setWords(getInitialData());
+        setLoading(false);
+        setOpen(false);
+      })
+      .catch((res: ApiResponse) => {
+        if (!res.aborted) {
+          setLoading(false);
+        }
+      });
   }
 
   function handleModalClose(): void {
+    abortCreate.abort();
     setLoading(false);
     setOpen(false);
   }
