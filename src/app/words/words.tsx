@@ -5,6 +5,7 @@ import { ApiResponse, Word, WordsListResponse } from '@shared/interfaces';
 import { Button, Spinner } from '@shared/ui';
 import { events } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
+import { EventTypes } from '@shared/enums';
 import { WordsList } from './words-list/words-list'
 import { WordActions } from './word-actions/word-actions';
 import { WordAdd } from './word-add/word-add';
@@ -47,7 +48,11 @@ export function Words() {
   }
 
   function handleWordClick(word: Word): void {
-    events.trigger('show-word-actions', word);
+    events.trigger(EventTypes.showWordActions, word);
+  }
+
+  function handleWordAddClick(): void {
+    events.trigger(EventTypes.showWordAdd);
   }
 
   function handleWordEdited(word: Word): void {
@@ -61,7 +66,7 @@ export function Words() {
 
   return (
     <div className="words">
-      <Button text="Add" onClick={() => events.trigger('open-word-add')} />
+      <Button text="Add" onClick={handleWordAddClick} />
 
       {!empty && (
         <>

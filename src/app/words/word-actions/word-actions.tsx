@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Modal, Button } from '@shared/ui';
 import { Word } from '@shared/interfaces';
+import { EventTypes } from '@shared/enums';
 import { events } from '@shared/utils';
 import { WordEdit } from './word-edit/word-edit';
 import { WordDelete } from './word-delete/word-delete';
@@ -19,7 +20,7 @@ export function WordActions({ onEdited, onDeleted}: WordActionsProps) {
   const [action, setAction] = useState<ActionType>(null);
 
   useEffect(() => {
-    return events.listen('show-word-actions', (word: Word) => {
+    return events.listen(EventTypes.showWordActions, (word: Word) => {
       setWord(word);
       setAction('options');
     });

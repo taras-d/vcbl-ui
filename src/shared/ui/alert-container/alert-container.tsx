@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { AlertOptions } from '@shared/interfaces';
 import { Modal, Button } from '@shared/ui';
 import { events } from '@shared/utils';
+import { EventTypes } from '@shared/enums';
 import './alert-container.less';
 
 export function AlertContainer() {
   const [options, setOptions] = useState<AlertOptions>(null);
 
   useEffect(() => {
-    return events.listen('show-alert', (data: AlertOptions) => setOptions(data));
+    return events.listen(EventTypes.showAlert, (data: AlertOptions) => setOptions(data));
   }, []);
 
   const closeAlert = () => setOptions(null);

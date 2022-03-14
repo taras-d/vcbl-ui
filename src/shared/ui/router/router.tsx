@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect } from 'react';
 
 import { events } from '@shared/utils';
+import { EventTypes } from '@shared/enums';
 export { Route } from './route';
 
 interface RouterProps {
@@ -13,7 +14,7 @@ export function Router({ routes }: RouterProps) {
   const [path, setPath] = useState(location.pathname);
 
   useLayoutEffect(() => {
-    return events.listen('history-change', () => setPath(location.pathname));
+    return events.listen(EventTypes.historyChange, () => setPath(location.pathname));
   }, []);
 
   return routes[path] || routes['*'] || null;

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { classes, events } from '@shared/utils';
+import { EventTypes } from '@shared/enums';
 import './modal.less';
 
 interface ModalProps {
@@ -72,5 +73,5 @@ export function Modal({
 }
 
 Modal.alert = (title: string, text: string ): void => {
-  events.trigger('show-alert', { title, text });
+  events.trigger(EventTypes.showAlert, { title, text });
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Modal, Input, Button } from '@shared/ui';
 import { events } from '@shared/utils';
 import { Word } from '@shared/interfaces';
+import { EventTypes } from '@shared/enums';
 import './word-add.less';
 
 type NewWord = Partial<Word>;
@@ -16,7 +17,7 @@ export function WordAdd() {
   ]);
 
   useEffect(() => {
-    return events.listen('open-word-add', () => setOpen(true));
+    return events.listen(EventTypes.showWordAdd, () => setOpen(true));
   }, []);
 
   const valid = useMemo(() => words.some(word => word.text.trim()), [words]);

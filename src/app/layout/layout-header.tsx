@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { history, events } from '@shared/utils';
 import './layout-header.less';
-import { AppRoutes } from '@shared/enums';
+import { AppRoutes, EventTypes } from '@shared/enums';
 import { Select } from '@shared/ui';
 
 export function LayoutHeader() {
   const [value, setValue] = useState(location.pathname);
 
   useEffect(() => {
-    return events.listen('history-change', () => setValue(location.pathname));
+    return events.listen(EventTypes.historyChange, () => setValue(location.pathname));
   }, []);
 
   function handleValueChange(event: React.SyntheticEvent): void {

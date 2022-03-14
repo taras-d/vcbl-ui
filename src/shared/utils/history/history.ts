@@ -1,6 +1,7 @@
 import { events } from '@shared/utils';
+import { EventTypes } from '@shared/enums';
 
-const triggerChange = () => events.trigger('history-change');
+const triggerChange = () => events.trigger(EventTypes.historyChange);
 
 window.addEventListener('popstate', triggerChange);
 
