@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { classes, events } from '@shared/utils';
-import { EventTypes } from '@shared/enums';
+import { EventTypes } from '@shared/interfaces';
 import './modal.less';
 
 interface ModalProps {

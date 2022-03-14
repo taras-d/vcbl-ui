@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { AlertOptions } from '@shared/interfaces';
+import { AlertOptions, EventTypes } from '@shared/interfaces';
 import { Modal, Button } from '@shared/ui';
 import { events } from '@shared/utils';
-import { EventTypes } from '@shared/enums';
 import './alert-container.less';
 
 export function AlertContainer() {

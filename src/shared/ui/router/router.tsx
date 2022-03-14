@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect } from 'react';
 
 import { events } from '@shared/utils';
-import { EventTypes } from '@shared/enums';
+import { EventTypes } from '@shared/interfaces';
 export { Route } from './route';
 
 interface RouterProps {

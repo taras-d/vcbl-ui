@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Modal, Button } from '@shared/ui';
-import { Word } from '@shared/interfaces';
-import { EventTypes } from '@shared/enums';
+import { Word, EventTypes } from '@shared/interfaces';
 import { events } from '@shared/utils';
 import { WordEdit } from './word-edit/word-edit';
 import { WordDelete } from './word-delete/word-delete';

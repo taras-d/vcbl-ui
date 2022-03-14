@@ -1,5 +1,5 @@
 import { events } from '@shared/utils';
-import { EventTypes } from '@shared/enums';
+import { EventTypes } from '@shared/interfaces';
 
 const triggerChange = () => events.trigger(EventTypes.historyChange);
 

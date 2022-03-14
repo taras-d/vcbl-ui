@@ -1,8 +1,8 @@
-import { AppRoutes } from '@shared/enums';
 import {
   ApiResponse,
   LoginRequest,
-  LoginResponse
+  LoginResponse,
+  AppRoutes,
 } from '@shared/interfaces';
 import { history, currentUser } from '@shared/utils';
 import { request } from './request';

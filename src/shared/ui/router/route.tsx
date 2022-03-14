@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { AppRoutes } from '@shared/enums';
+import { AppRoutes } from '@shared/interfaces';
 import { history, currentUser } from '@shared/utils';
 
 interface RouteProps {

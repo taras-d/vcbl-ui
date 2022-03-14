@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { history, events } from '@shared/utils';
-import './layout-header.less';
-import { AppRoutes, EventTypes } from '@shared/enums';
+import { AppRoutes, EventTypes } from '@shared/interfaces';
 import { Select } from '@shared/ui';
+import './layout-header.less';
 
 export function LayoutHeader() {
   const [value, setValue] = useState(location.pathname);

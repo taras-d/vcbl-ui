@@ -1,5 +1,5 @@
 import { Router, Route, AlertContainer } from '@shared/ui';
-import { AppRoutes } from '@shared/enums';
+import { AppRoutes } from '@shared/interfaces';
 import { Login } from './login/login';
 import { Words } from './words/words';
 import { Profile } from './profile/profile';

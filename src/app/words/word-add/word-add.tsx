@@ -2,8 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 
 import { Modal, Input, Button } from '@shared/ui';
 import { events } from '@shared/utils';
-import { Word } from '@shared/interfaces';
-import { EventTypes } from '@shared/enums';
+import { Word, EventTypes } from '@shared/interfaces';
 import './word-add.less';
 
 type NewWord = Partial<Word>;

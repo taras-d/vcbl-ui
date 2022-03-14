@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
 
 import { wordsApi } from '@shared/api';
-import { ApiResponse, Word, WordsListResponse } from '@shared/interfaces';
+import { ApiResponse, Word, WordsListResponse, EventTypes } from '@shared/interfaces';
 import { Button, Spinner } from '@shared/ui';
 import { events } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
-import { EventTypes } from '@shared/enums';
 import { WordsList } from './words-list/words-list'
 import { WordActions } from './word-actions/word-actions';
 import { WordAdd } from './word-add/word-add';
