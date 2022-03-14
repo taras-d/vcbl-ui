@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { Word } from '@shared/interfaces';
 import { Modal, Button, Input } from '@shared/ui';
 import { wordsApi } from '@shared/api';
 import { useAbortController } from '@shared/hooks';
+import { formatDate } from '@shared/utils';
 import './word-edit.less';
 
 interface WordDelete {
@@ -19,8 +20,17 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
 
   const valid = !!data.text?.trim();
 
+  const [created, updated] = useMemo(() => {
+    return [formatDate(word.createdAt), formatDate(word.updatedAt)];
+  }, [word]);
+
   function handleSubmit(event: React.SyntheticEvent): void {
     event.preventDefault();
+
+    if (!hasChanges()) {
+      onClose();
+      return;
+    }
 
     if (!valid) {
       return;
@@ -51,6 +61,10 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
     });
   }
 
+  function hasChanges(): boolean {
+    return (word.text !== data.text || word.translation !== data.translation);
+  }
+
   return (
     <Modal
       className="word-edit"
@@ -79,7 +93,7 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
             Created
           </div>
           <div className="col-8">
-            <Input name="created" defaultValue="" disabled />
+            <Input name="created" defaultValue={created} disabled />
           </div>
         </div>
         <div className="row">
@@ -87,7 +101,7 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
             Updated
           </div>
           <div className="col-8">
-            <Input name="translation" defaultValue="" disabled />
+            <Input name="translation" defaultValue={updated} disabled />
           </div>
         </div>
         <div className="edit-buttons">
