@@ -7,6 +7,7 @@ import { events } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
 import { WordsList } from './words-list/words-list'
 import { WordActions } from './word-actions/word-actions';
+import { WordAdd } from './word-add/word-add';
 import './words.less';
 
 export function Words() {
@@ -60,6 +61,8 @@ export function Words() {
 
   return (
     <div className="words">
+      <Button text="Add" onClick={() => events.trigger('open-word-add')} />
+
       {!empty && (
         <>
           <WordsList
@@ -80,6 +83,8 @@ export function Words() {
       {total > data.length && (
         <Button className="show-more" text="Show more" loading={loading} onClick={handleShowMoreClick} />
       )}
+
+      <WordAdd />
     </div>
   );
 }
