@@ -5,7 +5,7 @@ import {
 import { Modal } from '@shared/ui';
 import { currentUser } from '@shared/utils';
 
-const apiUrl = 'https://vcbl.herokuapp.com';
+const apiUrl = 'https://vcbl-api.herokuapp.com';
 
 function handleResponse(response: Response): Promise<ApiResponse> {
   return response.json()
