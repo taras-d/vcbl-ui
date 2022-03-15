@@ -2,12 +2,16 @@ import React, { useEffect, useState, useMemo } from 'react';
 
 import { Modal, Input, Button } from '@shared/ui';
 import { events } from '@shared/utils';
-import { EventTypes, NewWord, ApiResponse } from '@shared/interfaces';
+import { EventTypes, NewWord, ApiResponse, Word, WordCreateResponse } from '@shared/interfaces';
 import { useAbortController } from '@shared/hooks';
 import { wordsApi } from '@shared/api';
 import './word-add.less';
 
-export function WordAdd() {
+export interface WordAddProps {
+  onAdded: (created: Word[], updated: Word[]) => void;
+}
+
+export function WordAdd({ onAdded }: WordAddProps) {
   const abortCreate = useAbortController();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -56,10 +60,11 @@ export function WordAdd() {
 
     const data = words.filter(word => word.text.trim());
     wordsApi.createWord(data, abortCreate.signal())
-      .then(() => {
+      .then((res: WordCreateResponse) => {
         setWords(getInitialData());
         setLoading(false);
         setOpen(false);
+        onAdded(res.created, res.updated);
       })
       .catch((res: ApiResponse) => {
         if (!res.aborted) {

@@ -63,6 +63,20 @@ export function Words() {
     setTotal(total - 1);
   }
 
+  function handleWordAdded(created: Word[], updated: Word[]): void {
+    const words = [...created, ...data];
+
+    updated.forEach((word: Word) => {
+      const index = words.findIndex((item: Word) => item._id === word._id);
+      if (index !== -1) {
+        words[index] = word;
+      }
+    });
+
+    setData(words);
+    setTotal(total + created.length);
+  }
+
   return (
     <div className="words">
       <Button text="Add" onClick={handleWordAddClick} />
@@ -88,7 +102,7 @@ export function Words() {
         <Button className="show-more" text="Show more" loading={loading} onClick={handleShowMoreClick} />
       )}
 
-      <WordAdd />
+      <WordAdd onAdded={handleWordAdded} />
     </div>
   );
 }

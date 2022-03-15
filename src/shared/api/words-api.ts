@@ -5,6 +5,7 @@ import {
   Word,
   WordUpdateRequest,
   NewWord,
+  WordCreateResponse,
 } from "@shared/interfaces";
 import { request } from "./request";
 
@@ -26,13 +27,18 @@ function getWords(params: WordsListRequest, signal?: AbortSignal): Promise<Words
   });
 }
 
-function createWord(words: NewWord[], signal?: AbortSignal) {
+function createWord(words: NewWord[], signal?: AbortSignal): Promise<WordCreateResponse> {
   return request({
     method: 'post',
     path: 'words',
     signal,
     body: words,
-  });
+  }).then((res: ApiResponse) => {
+    const body = res.body as WordCreateResponse;
+    body.created.forEach(decorateWord);
+    body.updated.forEach(decorateWord);
+    return body;
+  })
 }
 
 function updateWord(params: WordUpdateRequest, signal?: AbortSignal): Promise<Word> {

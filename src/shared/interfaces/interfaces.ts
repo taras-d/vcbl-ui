@@ -65,6 +65,11 @@ export interface WordUpdateRequest {
   translation: string;
 }
 
+export interface WordCreateResponse {
+  created: Word[];
+  updated: Word[];
+}
+
 export interface NewWord {
   text: string;
   translation: string;
