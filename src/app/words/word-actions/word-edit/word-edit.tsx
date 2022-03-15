@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 
-import { Word } from '@shared/interfaces';
+import { ApiResponse, Word } from '@shared/interfaces';
 import { Modal, Button, Input } from '@shared/ui';
 import { wordsApi } from '@shared/api';
 import { useAbortController } from '@shared/hooks';
@@ -49,7 +49,10 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
         onClose();
         onEdited(result);
       })
-      .catch(() => {
+      .catch((res: ApiResponse) => {
+        if (res.status === 400) {
+          Modal.alert('Edit error', `Word with text "${word.text}" already exist`);
+        }
         setLoading(false);
       });
   }
