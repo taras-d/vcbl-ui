@@ -98,6 +98,7 @@ export function WordCreate({ onCreated }: WordCreateProps) {
             name="translation"
             placeholder="translation"
             disabled={loading}
+            maxLength={100}
             onChange={event => handleInputChange(event, index)}
             onFocus={() => handleInputFocus(index)}
           />

@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 
 import { classes, events } from '@shared/utils';
 import { EventTypes } from '@shared/interfaces';
+import { CloseIcon } from '@shared/ui';
 import './modal.less';
 
 interface ModalProps {
   open?: boolean;
   header?: React.ReactNode;
   children?: React.ReactNode;
+  closeIcon?: boolean;
   closeByEsc?: boolean;
   closeByBackdrop?: boolean;
   className?: string;
@@ -19,6 +21,7 @@ export function Modal({
   open = true,
   header,
   children,
+  closeIcon = true,
   closeByEsc = true,
   closeByBackdrop = true,
   className = '',
@@ -59,7 +62,10 @@ export function Modal({
       <div className="modal-inner">
         <div className="modal-box">
           {header && (
-            <div className="modal-header">{header}</div>
+            <div className="modal-header">
+              <div className="modal-header-text">{header}</div>
+              {closeIcon && <div className="modal-header-close" onClick={onClose}><CloseIcon /></div>}
+            </div>
           )}
           <div className="modal-body">
             {children}

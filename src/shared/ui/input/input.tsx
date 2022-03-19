@@ -8,6 +8,8 @@ interface InputProps {
   placeholder?: string;
   disabled?: boolean;
   autoComplete?: string;
+  autoCapitalize?: string;
+  maxLength?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
@@ -19,7 +21,9 @@ export function Input({
   type,
   placeholder,
   disabled,
-  autoComplete,
+  autoComplete = 'off',
+  autoCapitalize = 'off',
+  maxLength = 50,
   onChange,
   onFocus
 }: InputProps) {
@@ -33,6 +37,8 @@ export function Input({
       placeholder={placeholder}
       disabled={disabled}
       autoComplete={autoComplete}
+      autoCapitalize={autoCapitalize}
+      maxLength={maxLength}
       onChange={onChange}
       onFocus={onFocus}
     />

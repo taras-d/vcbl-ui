@@ -80,7 +80,12 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
             Text
           </div>
           <div className="col-8">
-            <Input name="text" value={data.text} onChange={handleChange} />
+            <Input
+              name="text"
+              placeholder="text"
+              value={data.text}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <div className="row">
@@ -88,7 +93,12 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
             Translation
           </div>
           <div className="col-8">
-            <Input name="translation" value={data.translation} onChange={handleChange} />
+            <Input
+              name="translation"
+              placeholder="translation"
+              maxLength={100}
+              value={data.translation}
+              onChange={handleChange} />
           </div>
         </div>
         <div className="row">
