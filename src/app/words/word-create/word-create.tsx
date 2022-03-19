@@ -119,7 +119,7 @@ export function WordCreate({ onCreated }: WordCreateProps) {
   return open && (
     <Modal
       className="word-create"
-      header="Word create"
+      header="Create word"
       onClose={handleModalClose}>
       <form autoComplete="off" onSubmit={handleSubmit}>
         {words.map(renderWord)}
