@@ -5,13 +5,13 @@ import { events } from '@shared/utils';
 import { EventTypes, NewWord, ApiResponse, Word, WordCreateResponse } from '@shared/interfaces';
 import { useAbortController } from '@shared/hooks';
 import { wordsApi } from '@shared/api';
-import './word-add.less';
+import './word-create.less';
 
-export interface WordAddProps {
-  onAdded: (created: Word[], updated: Word[]) => void;
+export interface WordCreateProps {
+  onCreated: (created: Word[], updated: Word[]) => void;
 }
 
-export function WordAdd({ onAdded }: WordAddProps) {
+export function WordCreate({ onCreated }: WordCreateProps) {
   const abortCreate = useAbortController();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -64,7 +64,7 @@ export function WordAdd({ onAdded }: WordAddProps) {
         setWords(getInitialData());
         setLoading(false);
         setOpen(false);
-        onAdded(res.created, res.updated);
+        onCreated(res.created, res.updated);
       })
       .catch((res: ApiResponse) => {
         if (!res.aborted) {

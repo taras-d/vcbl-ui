@@ -7,7 +7,7 @@ import { events } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
 import { WordsList } from './words-list/words-list'
 import { WordActions } from './word-actions/word-actions';
-import { WordAdd } from './word-add/word-add';
+import { WordCreate } from './word-create/word-create';
 import './words.less';
 
 export function Words() {
@@ -63,7 +63,7 @@ export function Words() {
     setTotal(total - 1);
   }
 
-  function handleWordAdded(created: Word[], updated: Word[]): void {
+  function handleWordCreated(created: Word[], updated: Word[]): void {
     const words = [...created, ...data];
 
     updated.forEach((word: Word) => {
@@ -102,7 +102,7 @@ export function Words() {
         <Button className="show-more" text="Show more" loading={loading} onClick={handleShowMoreClick} />
       )}
 
-      <WordAdd onAdded={handleWordAdded} />
+      <WordCreate onCreated={handleWordCreated} />
     </div>
   );
 }
