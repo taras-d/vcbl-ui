@@ -3,7 +3,7 @@ import { classes } from '@shared/utils';
 import './button.less';
 
 interface ButtonProps {
-  text?: string;
+  text?: React.ReactNode;
   disabled?: boolean;
   loading?: boolean;
   className?: string;

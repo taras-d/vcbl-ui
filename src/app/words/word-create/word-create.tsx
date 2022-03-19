@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 
-import { Modal, Input, Button } from '@shared/ui';
+import { Modal, Input, Button, CloseIcon } from '@shared/ui';
 import { events } from '@shared/utils';
 import { EventTypes, NewWord, ApiResponse, Word, WordCreateResponse } from '@shared/interfaces';
 import { useAbortController } from '@shared/hooks';
@@ -103,20 +103,22 @@ export function WordCreate({ onCreated }: WordCreateProps) {
           />
         </div>
         <div className="col-1">
-          <Button 
+          <Button
+            className="remove-button"
             type="button" 
-            text="x" onClick={() => handleDeleteClick(word)}
-            disabled={loading || index === 0}
+            text={<CloseIcon />}
+            disabled={words.length < 2}
+            onClick={() => handleDeleteClick(word)}
           />
         </div>
       </div>
-    )
+    );
   }
 
   return open && (
     <Modal
-      className="word-add"
-      header="Word add"
+      className="word-create"
+      header="Word create"
       onClose={handleModalClose}>
       <form autoComplete="off" onSubmit={handleSubmit}>
         {words.map(renderWord)}
