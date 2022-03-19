@@ -35,6 +35,9 @@ function createWord(words: NewWord[], signal?: AbortSignal): Promise<WordCreateR
     body: words,
   }).then((res: ApiResponse) => {
     const body = res.body as WordCreateResponse;
+    body.created.sort((a: Word, b: Word) => {
+      return (+new Date(b.createdAt) - +new Date(a.createdAt)) || a.text.localeCompare(b.text);
+    });
     body.created.forEach(decorateWord);
     body.updated.forEach(decorateWord);
     return body;
