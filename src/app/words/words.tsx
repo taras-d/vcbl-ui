@@ -81,30 +81,18 @@ export function Words() {
     <div className="words">
       <Button text="Add" onClick={handleWordAddClick} />
 
-      {!empty && (
-        <>
-          <WordsList
-            words={data}
-            onWordClick={handleWordClick}
-          />
-          <WordActions
-            onEdited={handleWordEdited}
-            onDeleted={handleWordDeleted}
-          />
-        </>
-      )}
+      <WordsList words={data} onWordClick={handleWordClick} />
 
-      {loading && empty && <Spinner />}
+      {empty && (loading ? <Spinner /> : <div className="no-words">No words</div>)}
 
-      {!loading && empty && <div className="no-words">No words</div>}
-
-      {data.length > 0 && <div className="words-count">Shown {data.length} word(s) of {total}</div>}
+      {!empty && <div className="words-count">Shown {data.length} word(s) of {total}</div>}
 
       {total > data.length && (
         <Button className="show-more" text="Show more" loading={loading} onClick={handleShowMoreClick} />
       )}
 
       <WordCreate onCreated={handleWordCreated} />
+      <WordActions onEdited={handleWordEdited} onDeleted={handleWordDeleted} />
     </div>
   );
 }
