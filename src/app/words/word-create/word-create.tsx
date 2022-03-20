@@ -18,7 +18,7 @@ export function WordCreate({ onCreated }: WordCreateProps) {
   const [words, setWords] = useState<NewWord[]>(() => getInitialData());
 
   useEffect(() => {
-    return events.listen(EventTypes.showWordAdd, () => setOpen(true));
+    return events.listen(EventTypes.showWordCreate, () => setOpen(true));
   }, []);
 
   const valid = useMemo(() => words.some(word => word.text.trim()), [words]);

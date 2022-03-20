@@ -51,7 +51,7 @@ export function Words() {
   }
 
   function handleWordAddClick(): void {
-    events.trigger(EventTypes.showWordAdd);
+    events.trigger(EventTypes.showWordCreate);
   }
 
   function handleWordEdited(word: Word): void {
