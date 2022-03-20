@@ -98,6 +98,8 @@ export function Words() {
 
       {!loading && empty && <div className="no-words">No words</div>}
 
+      {data.length > 0 && <div className="words-count">Shown {data.length} word(s) of {total}</div>}
+
       {total > data.length && (
         <Button className="show-more" text="Show more" loading={loading} onClick={handleShowMoreClick} />
       )}
