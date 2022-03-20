@@ -5,7 +5,8 @@ import { ApiResponse, Word, WordsListResponse, EventTypes } from '@shared/interf
 import { Button, Spinner } from '@shared/ui';
 import { events } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
-import { WordsList } from './words-list/words-list'
+import { WordsList } from './words-list/words-list';
+import { WordsListActions } from './words-list-actions/words-list-actions';
 import { WordActions } from './word-actions/word-actions';
 import { WordCreate } from './word-create/word-create';
 import './words.less';
@@ -23,10 +24,10 @@ export function Words() {
     loadData();
   }, []);
 
-  function loadData(): void {
+  function loadData(search?: string): void {
     setLoading(true);
 
-    wordsApi.getWords({ skip: skipRef.current }, dataAbort.signal())
+    wordsApi.getWords({ skip: skipRef.current, search }, dataAbort.signal())
       .then((res: WordsListResponse) => {
         setData([...data, ...res.data]);
         setTotal(res.total);
@@ -77,10 +78,13 @@ export function Words() {
     setTotal(total + created.length);
   }
 
+  function handleWordSearch(value: string): void {
+    console.log(value);
+  }
+
   return (
     <div className="words">
-      <Button text="Add" onClick={handleWordAddClick} />
-
+      <WordsListActions onSearch={handleWordSearch} onAdd={handleWordAddClick} />
       <WordsList words={data} onWordClick={handleWordClick} />
 
       {empty && (loading ? <Spinner /> : <div className="no-words">No words</div>)}
