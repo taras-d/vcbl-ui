@@ -1,4 +1,7 @@
 {
+  "header_vocabulary": "Vocabulary",
+  "header_profile": "Profile",
+
   "profile_email": "Email",
   "profile_created": "Created",
   "profile_updated": "Updated",

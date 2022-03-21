@@ -1,4 +1,7 @@
 {
+  "header_vocabulary": "Словник",
+  "header_profile": "Профіль",
+
   "profile_email": "Email",
   "profile_created": "Створено",
   "profile_updated": "Оновлено",
