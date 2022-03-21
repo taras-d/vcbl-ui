@@ -10,4 +10,5 @@ export enum EventTypes {
   showAlert = 'show-alert',
   showWordActions = 'show-word-actions',
   showWordCreate = 'show-word-create',
+  languageChange = 'language-change'
 }

@@ -6,3 +6,4 @@ export * from './modal/modal';
 export * from './alert-container/alert-container';
 export * from './select/select';
 export * from './close-icon/close-icon';
+export * from './translate/translate';

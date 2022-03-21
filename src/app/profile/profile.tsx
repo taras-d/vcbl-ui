@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react';
 
-import { Input, Select, Button } from '@shared/ui';
-import { currentUser, formatDate } from '@shared/utils';
+import { Input, Select, Button, tkey, } from '@shared/ui';
+import { currentUser, formatDate, language } from '@shared/utils';
 import { authApi } from '@shared/api/auth-api';
+import { TranslateLang } from '@shared/interfaces';
 
 import './profile.less';
 
 export function Profile() {
-  const [language, setLanguage] = useState('en');
+  const [lang, setLang] = useState<TranslateLang>(language.get());
   const [theme, setTheme] = useState('default');
 
   const user = currentUser.user;
@@ -16,12 +17,14 @@ export function Profile() {
     return [formatDate(user.createdAt), formatDate(user.updatedAt)];
   }, []);
 
-  function handleLanguageChange(event: React.SyntheticEvent<HTMLSelectElement>): void {
-    setLanguage((event.target as HTMLSelectElement).value);
+  function handleLanguageChange(event: React.ChangeEvent<HTMLSelectElement>): void {
+    const value = event.target.value as TranslateLang;
+    setLang(value);
+    language.set(value);
   }
 
-  function handleThemeChange(event: React.SyntheticEvent<HTMLSelectElement>): void {
-    setTheme((event.target as HTMLSelectElement).value);
+  function handleThemeChange(event: React.ChangeEvent<HTMLSelectElement>): void {
+    setTheme(event.target.value);
   }
 
   function handleLogoutClick(): void {
@@ -31,40 +34,41 @@ export function Profile() {
   return (
     <div className="profile">
       <div className="row">
-        <div className="col-3">Email</div>
+        <div className="col-3">{tkey('profile_email')}</div>
         <div className="col-9">
           <Input defaultValue={user.email} disabled />
         </div>
       </div>
       <div className="row">
-        <div className="col-3">Created</div>
+        <div className="col-3">{tkey('profile_created')}</div>
         <div className="col-9">
           <Input defaultValue={created} disabled />
         </div>
       </div>
       <div className="row">
-        <div className="col-3">Updated</div>
+        <div className="col-3">{tkey('profile_updated')}</div>
         <div className="col-9">
           <Input defaultValue={updated} disabled />
         </div>
       </div>
       <div className="row">
-        <div className="col-3">Language</div>
+        <div className="col-3">{tkey('profile_lang')}</div>
         <div className="col-9">
-          <Select value={language} onChange={handleLanguageChange}>
+          <Select value={lang} onChange={handleLanguageChange}>
             <option value="en">English</option>
+            <option value="uk">Ukrainian</option>
           </Select>
         </div>
       </div>
       <div className="row">
-        <div className="col-3">Theme</div>
+        <div className="col-3">{tkey('profile_theme')}</div>
         <div className="col-9">
           <Select value={theme} onChange={handleThemeChange}>
             <option value="default">Default</option>
           </Select>
         </div>
       </div>
-      <Button className="profile-logout" onClick={handleLogoutClick} text="Logout" />
+      <Button className="profile-logout" onClick={handleLogoutClick} text={tkey('profile_logout')} />
     </div>
   );
 }
