@@ -3,7 +3,7 @@ import {
   ApiResponse,
 } from '@shared/interfaces';
 import { Modal } from '@shared/ui';
-import { currentUser } from '@shared/utils';
+import { currentUser, tkey } from '@shared/utils';
 
 const apiUrl = 'https://vcbl-api.herokuapp.com';
 
@@ -33,7 +33,10 @@ function handleError(error: Error | ApiResponse, params: ApiRequest): Promise<Ap
   }
 
   if (!apiResponse.aborted && !params.hideError) {
-    Modal.alert('Error', 'Something went wrong');
+    Modal.alert(
+      tkey('default_error_title'),
+      tkey('default_error_text')
+    );
   }
 
   return Promise.reject(apiResponse);
@@ -77,6 +80,6 @@ export function request(params: ApiRequest): Promise<ApiResponse> {
     headers: getHeaders(),
     signal: params.signal,
   })
-  .then(handleResponse)
-  .catch(err => handleError(err, params));
+    .then(handleResponse)
+    .catch(err => handleError(err, params));
 }

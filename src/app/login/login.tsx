@@ -4,6 +4,7 @@ import { Input, Button, Modal } from '@shared/ui';
 import { ApiResponse } from "@shared/interfaces";
 import { authApi } from '@shared/api';
 import { useAbortController } from "@shared/hooks";
+import { tkey } from "@shared/utils";
 import './login.less';
 
 export function Login() {
@@ -30,7 +31,10 @@ export function Login() {
         }
 
         if (res.status === 401) {
-          Modal.alert('Login failed', 'Email or password incorrect');
+          Modal.alert(
+            tkey('login_failed_title'),
+            tkey('login_failed_text')
+          );
         }
         
         setLoading(false);
@@ -43,21 +47,21 @@ export function Login() {
   
   return (
     <form className="login" autoCapitalize="off" onSubmit={handleSubmit}>
-      <div className="login-header">Vocabulary</div>
+      <div className="login-header">{tkey('login_header')}</div>
       <Input
         name="email"
+        placeholder={tkey('login_email')}
         value={data.email}
-        placeholder="Email"
         onChange={handleChange}
       />
       <Input
         name="password"
+        placeholder={tkey('login_password')}
         type="password"
         value={data.password}
-        placeholder="Password"
         onChange={handleChange}
       />
-      <Button text="Login" disabled={!canSubmit()} loading={loading}/>
+      <Button text={tkey('login_submit')} disabled={!canSubmit()} loading={loading}/>
     </form>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { AlertOptions, EventTypes } from '@shared/interfaces';
 import { Modal, Button } from '@shared/ui';
-import { events } from '@shared/utils';
+import { events, tkey } from '@shared/utils';
 import './alert-container.less';
 
 export function AlertContainer() {
@@ -21,7 +21,7 @@ export function AlertContainer() {
       onClose={closeAlert}>
       {options.text}
       <div className="alert-actions">
-        <Button text="Ok" onClick={closeAlert}/>
+        <Button text={tkey('alert_ok')} onClick={closeAlert}/>
       </div>
     </Modal>
   );

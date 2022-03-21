@@ -2,6 +2,13 @@
   "header_vocabulary": "Vocabulary",
   "header_profile": "Profile",
 
+  "login_failed_title": "Login failed",
+  "login_failed_text": "Email or password incorrect",
+  "login_header": "Vocabulary",
+  "login_email": "Enter email",
+  "login_password": "Enter password",
+  "login_submit": "Login",
+
   "profile_email": "Email",
   "profile_created": "Created",
   "profile_updated": "Updated",
@@ -10,5 +17,9 @@
   "profile_lang_uk": "Ukrainian",
   "profile_theme": "Theme",
   "profile_theme_default": "Default",
-  "profile_logout": "Logout"
+  "profile_logout": "Logout",
+
+  "default_error_title": "Error",
+  "default_error_text": "Something went wrong",
+  "alert_ok": "Ok"
 }
