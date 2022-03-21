@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <script>
-      window.__lang = fetch(`language/${localStorage.getItem('vcbl_lang') || 'en'}.json`).then(r => r.json());
+      (function() {
+        let lang = localStorage.getItem('vcbl_lang');
+        lang = ['en', 'uk'].includes(lang) ? lang : 'en';
+        window.__lang = fetch(`language/${lang}.json`).then(r => r.json());
+      }());
     </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
