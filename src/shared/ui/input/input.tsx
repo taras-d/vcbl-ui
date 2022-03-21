@@ -1,3 +1,4 @@
+import { classes } from '@shared/utils';
 import './input.less';
 
 interface InputProps {
@@ -10,6 +11,7 @@ interface InputProps {
   autoComplete?: string;
   autoCapitalize?: string;
   maxLength?: number;
+  className?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
@@ -24,12 +26,14 @@ export function Input({
   autoComplete = 'off',
   autoCapitalize = 'off',
   maxLength = 50,
+  className,
   onChange,
   onFocus
 }: InputProps) {
+  const rootClass = classes('base-input input', className);
   return (
     <input
-      className="base-input input"
+      className={rootClass}
       value={value}
       defaultValue={defaultValue}
       type={type}

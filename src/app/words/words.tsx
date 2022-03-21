@@ -6,14 +6,14 @@ import { Button, Spinner } from '@shared/ui';
 import { events } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
 import { WordsList } from './words-list/words-list';
-import { WordsListActions } from './words-list-actions/words-list-actions';
+import { WordsSearch } from './words-search/words-search';
 import { WordActions } from './word-actions/word-actions';
 import { WordCreate } from './word-create/word-create';
 import './words.less';
 
 export function Words() {
   const dataAbort = useAbortController();
-  const skipRef = useRef(0);
+  const search = useRef('');
   const [data, setData] = useState<Word[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -24,12 +24,12 @@ export function Words() {
     loadData();
   }, []);
 
-  function loadData(search?: string): void {
+  function loadData(skip = 0): void {
     setLoading(true);
 
-    wordsApi.getWords({ skip: skipRef.current, search }, dataAbort.signal())
+    wordsApi.getWords({ skip, search: search.current }, dataAbort.signal())
       .then((res: WordsListResponse) => {
-        setData([...data, ...res.data]);
+        setData((_data: Word[]) => _data.concat(res.data));
         setTotal(res.total);
         setLoading(false);
       })
@@ -43,15 +43,14 @@ export function Words() {
   }
 
   function handleShowMoreClick(): void {
-    skipRef.current = data.length;
-    loadData();
+    loadData(data.length);
   }
 
   function handleWordClick(word: Word): void {
     events.trigger(EventTypes.showWordActions, word);
   }
 
-  function handleWordAddClick(): void {
+  function handleAddClick(): void {
     events.trigger(EventTypes.showWordCreate);
   }
 
@@ -78,13 +77,20 @@ export function Words() {
     setTotal(total + created.length);
   }
 
-  function handleWordSearch(value: string): void {
-    console.log(value);
+  function handleWordsSearch(value: string): void {
+    search.current = value;
+    setData([]);
+    setTotal(0);
+    loadData();
   }
 
   return (
     <div className="words">
-      <WordsListActions onSearch={handleWordSearch} onAdd={handleWordAddClick} />
+      <div className="top-actions">
+        <WordsSearch onSearch={handleWordsSearch} />
+        <Button text="Add" onClick={handleAddClick} />
+      </div>
+
       <WordsList words={data} onWordClick={handleWordClick} />
 
       {empty && (loading ? <Spinner /> : <div className="no-words">No words</div>)}

@@ -15,7 +15,7 @@ function getWords(params: WordsListRequest, signal?: AbortSignal): Promise<Words
     query: {
       $limit: params.limit || 15,
       $skip: params.skip,
-      $search: params.search,
+      $search: params.search || null,
       '$sort[createdAt]': '-1',
       '$sort[text]': '1',
     },
