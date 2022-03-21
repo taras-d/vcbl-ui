@@ -3,6 +3,9 @@
   "profile_created": "Created",
   "profile_updated": "Updated",
   "profile_lang": "Langauge",
+  "profile_lang_en": "English",
+  "profile_lang_uk": "Ukrainian",
   "profile_theme": "Theme",
+  "profile_theme_default": "Default",
   "profile_logout": "Logout"
 }

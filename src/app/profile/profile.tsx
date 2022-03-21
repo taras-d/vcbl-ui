@@ -1,14 +1,13 @@
 import React, { useMemo, useState } from 'react';
 
-import { Input, Select, Button, tkey, } from '@shared/ui';
-import { currentUser, formatDate, language } from '@shared/utils';
+import { Input, Select, Button, } from '@shared/ui';
+import { currentUser, formatDate, language, tkey } from '@shared/utils';
 import { authApi } from '@shared/api/auth-api';
 import { TranslateLang } from '@shared/interfaces';
 
 import './profile.less';
 
 export function Profile() {
-  const [lang, setLang] = useState<TranslateLang>(language.get());
   const [theme, setTheme] = useState('default');
 
   const user = currentUser.user;
@@ -18,9 +17,7 @@ export function Profile() {
   }, []);
 
   function handleLanguageChange(event: React.ChangeEvent<HTMLSelectElement>): void {
-    const value = event.target.value as TranslateLang;
-    setLang(value);
-    language.set(value);
+    language.set(event.target.value as TranslateLang);
   }
 
   function handleThemeChange(event: React.ChangeEvent<HTMLSelectElement>): void {
@@ -54,9 +51,9 @@ export function Profile() {
       <div className="row">
         <div className="col-3">{tkey('profile_lang')}</div>
         <div className="col-9">
-          <Select value={lang} onChange={handleLanguageChange}>
-            <option value="en">English</option>
-            <option value="uk">Ukrainian</option>
+          <Select value={language.get()} onChange={handleLanguageChange}>
+            <option value="en">{tkey('profile_lang_en')}</option>
+            <option value="uk">{tkey('profile_lang_uk')}</option>
           </Select>
         </div>
       </div>
@@ -64,11 +61,16 @@ export function Profile() {
         <div className="col-3">{tkey('profile_theme')}</div>
         <div className="col-9">
           <Select value={theme} onChange={handleThemeChange}>
-            <option value="default">Default</option>
+            <option value="default">{tkey('profile_theme_default')}</option>
           </Select>
         </div>
       </div>
-      <Button className="profile-logout" onClick={handleLogoutClick} text={tkey('profile_logout')} />
+      
+      <Button
+        className="profile-logout"
+        onClick={handleLogoutClick}
+        text={tkey('profile_logout')}
+      />
     </div>
   );
 }

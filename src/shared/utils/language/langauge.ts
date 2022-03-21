@@ -1,32 +1,39 @@
-import { storage, events } from '@shared/utils';
-import { TranslateLang, TranslateDic, EventTypes } from '@shared/interfaces';
+import { storage } from '@shared/utils';
+import { TranslateLang, TranslateDict } from '@shared/interfaces';
 
-const map: Record<string, Promise<TranslateDic>> = {};
+declare global {
+  interface Window {
+    __lang: Promise<TranslateDict>;
+  }
+}
 
-let lang: TranslateLang = storage.get('lang')  as TranslateLang || 'en';
+const dictPromise = window.__lang;
+delete window.__lang;
+
+let dict: TranslateDict;
+
+function init(): Promise<void> {
+  return dictPromise
+    .then((res: TranslateDict) => dict = res)
+    .then(() => null);
+}
+
 
 function get(): TranslateLang {
-  return lang;
+  return storage.get('lang') as TranslateLang || 'en';
 }
 
 function set(value: TranslateLang): void {
-  lang = value;
   storage.set('lang', value);
-  events.trigger(EventTypes.languageChange);
+  location.reload();
 }
 
-function translate(key: string): Promise<string> {
-  let dict = map[lang];
-
-  if (!dict) {
-    map[lang] = dict = fetch(`language/${lang}.json`).then(res => res.json());
-  }
-
-  return dict.then((data: TranslateDic) => data[key]);
+export function tkey(key: string): string {
+  return dict[key] || '';
 }
 
 export const language = {
-  get,
+  init,
   set,
-  translate,
+  get,
 }

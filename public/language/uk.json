@@ -1,8 +1,11 @@
 {
-  "profile_email": "Емейл",
+  "profile_email": "Email",
   "profile_created": "Створено",
   "profile_updated": "Оновлено",
   "profile_lang": "Мова",
+  "profile_lang_en": "Англійська",
+  "profile_lang_uk": "Українська",
   "profile_theme": "Тема",
+  "profile_theme_default": "Стандартна",
   "profile_logout": "Вийти"
 }

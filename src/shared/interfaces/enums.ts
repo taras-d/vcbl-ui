@@ -9,6 +9,5 @@ export enum EventTypes {
   historyChange = 'history-change',
   showAlert = 'show-alert',
   showWordActions = 'show-word-actions',
-  showWordCreate = 'show-word-create',
-  languageChange = 'language-change'
+  showWordCreate = 'show-word-create'
 }

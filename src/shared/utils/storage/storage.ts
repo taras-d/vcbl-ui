@@ -5,14 +5,18 @@ function prefixedKey(key: string): string {
 }
 
 function set(key: string, value: unknown): void {
-  localStorage.setItem(prefixedKey(key), JSON.stringify(value));
+  if (typeof value === 'object') {
+    value = JSON.stringify(value);
+  }
+  localStorage.setItem(prefixedKey(key), value as string);
 }
 
 function get(key: string): unknown {
+  const value = localStorage.getItem(prefixedKey(key));
   try {
-    return JSON.parse(localStorage.getItem(prefixedKey(key)));
+    return JSON.parse(value);
   } catch {
-    return null;
+    return value;
   }
 }
 
