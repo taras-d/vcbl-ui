@@ -26,6 +26,7 @@ export function Words() {
 
   function loadData(skip = 0): void {
     setLoading(true);
+    dataAbort.abort();
 
     wordsApi.getWords({ skip, search: search.current }, dataAbort.signal())
       .then((res: WordsListResponse) => {

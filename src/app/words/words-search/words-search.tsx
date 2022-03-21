@@ -1,35 +1,41 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import { Input } from "@shared/ui";
+import { CloseIcon, Input } from "@shared/ui";
+import './words-search.less';
 
 export interface WordsSearchProps {
   onSearch: (value: string) => void;
 }
 
 export function WordsSearch({ onSearch }: WordsSearchProps) {
-  const firstChange = useRef(true);
+  const timeoutId = useRef<number>();
   const [value, setValue] = useState<string>('');
 
   useEffect(() => {
-    if (firstChange.current) {
-      firstChange.current = false;
-      return;
-    }
-
-    const id = setTimeout(() => onSearch(value.trim()), 500);
-    return () => clearTimeout(id);
-  }, [value]);
+    return () => clearTimeout(timeoutId.current);
+  }, []);
 
   function handleValueChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    setValue(event.target.value);
+    const inputValue = event.target.value;
+    setValue(inputValue);
+
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => onSearch(inputValue.trim()), 500);
+  }
+
+  function handleClearClick(): void {
+    setValue('');
+    onSearch('');
   }
 
   return (
-    <Input
-      className="words-search"
-      placeholder="Search"
-      value={value}
-      onChange={handleValueChange}
-    />
+    <div className="words-search">
+      <Input
+        placeholder="Search"
+        value={value}
+        onChange={handleValueChange}
+      />
+      {value && <div className="clear-search" onClick={handleClearClick} ><CloseIcon /></div>}
+    </div>
 );
 }
