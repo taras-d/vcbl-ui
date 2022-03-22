@@ -1,19 +1,23 @@
 type Arg = string | {[key: string]: unknown};
 
 export function classes(...args: Arg[]): string {
-  return args
-    .filter(arg => arg)
-    .map(arg => {
-      if (typeof arg === 'string') {
-        return arg;
-      }
+  let result = '';
 
-      const items = [];
+  args.forEach((arg: Arg) => {
+    if (!arg) {
+      return;
+    }
+
+    if (typeof arg === 'string') {
+      result += `${arg} `;
+    } else {
       for (const key in arg) {
         if (arg[key]) {
-          items.push(key);
+          result += `${key} `;
         }
       }
-      return items.join(' ');
-    }).join(' ');
+    }
+  });
+
+  return result.trim();
 }
