@@ -4,8 +4,13 @@ import {
 } from '@shared/interfaces';
 import { Modal } from '@shared/ui';
 import { storage, tkey } from '@shared/utils';
+import { authApi } from '@shared/api';
 
 const apiUrl = 'https://vcbl-api.herokuapp.com';
+
+function isSessionInvalid(response: ApiResponse, params: ApiRequest): boolean {
+  return response.status === 401 && params.path !== 'authentication';
+}
 
 function handleResponse(response: Response): Promise<ApiResponse> {
   return response.json()
@@ -32,11 +37,12 @@ function handleError(error: Error | ApiResponse, params: ApiRequest): Promise<Ap
     apiResponse = error;
   }
 
-  if (!apiResponse.aborted && !params.hideError) {
-    Modal.alert(
-      tkey('defaultError.title'),
-      tkey('defaultError.text')
-    );
+  if (!apiResponse.aborted) {
+    if (isSessionInvalid(apiResponse, params)) {
+      authApi.logout();
+    } else if (!params.hideDefaultError) {
+      Modal.alert(tkey('defaultError.title'), tkey('defaultError.text'));
+    }
   }
 
   return Promise.reject(apiResponse);
