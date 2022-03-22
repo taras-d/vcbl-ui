@@ -34,15 +34,15 @@ export function WordDelete({ word, onClose, onDeleted }: WordDelete) {
   return (
     <Modal
       className="word-delete"
-      header={tkey('word_del_title')}
+      header={tkey('wordDel.title')}
       onClose={onClose}
     >
       <div className="delete-message">
-        {tkey('word_del_text', word.text)}
+        {tkey('wordDel.text', word.text)}
       </div>
       <div className="delete-buttons">
-        <Button text={tkey('word_del_yes')} onClick={handleYesClick} loading={loading}/>
-        <Button text={tkey('word_del_no')} onClick={onClose} disabled={loading}/>
+        <Button text={tkey('wordDel.yes')} onClick={handleYesClick} loading={loading}/>
+        <Button text={tkey('wordDel.no')} onClick={onClose} disabled={loading}/>
       </div>
     </Modal>
   );

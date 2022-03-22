@@ -10,7 +10,7 @@
   "login_submit": "Увійти",
 
   "wordEdit": {
-    "title": "Редагування слова",
+    "title": "Редагування",
     "text": "Слово",
     "textHolder": "Введіть слово",
     "translation": "Переклад",
@@ -22,10 +22,19 @@
     "existErrText": "Слово \"{0}\" вже існує"
   },
 
-  "word_del_title": "Видалення слова",
-  "word_del_text": "Ви дійсно бажаєте видалити слово \"{0}\"?",
-  "word_del_yes": "Так",
-  "word_del_no": "Ні",
+  "wordDel": {
+    "title": "Видалення",
+    "text": "Ви дійсно бажаєте видалити слово \"{0}\"?",
+    "yes": "Так",
+    "no": "Ні"
+  },
+
+  "wordActions": {
+    "edit": "Редагувати",
+    "translate": "Перекласти",
+    "searchImgs": "Пошук зображень",
+    "delete": "Видалити"
+  },
 
   "profile_email": "Email",
   "profile_created": "Створено",

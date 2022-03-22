@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Modal, Button } from '@shared/ui';
 import { Word, EventTypes } from '@shared/interfaces';
-import { events } from '@shared/utils';
+import { events, tkey } from '@shared/utils';
 import { WordEdit } from './word-edit/word-edit';
 import { WordDelete } from './word-delete/word-delete';
 import './word-actions.less';
@@ -49,10 +49,10 @@ export function WordActions({ onEdited, onDeleted}: WordActionsProps) {
       onClose={handleClose}
     >
       <div className="options">
-        <Button text="Edit word" onClick={() => setAction('edit')}/>
-        <Button text="Translate" onClick={() => window.open(word.translateLink)}/>
-        <Button text="Search images" onClick={() => window.open(word.imagesLink)}/>
-        <Button text="Delete word" onClick={() => setAction('delete')}/>
+        <Button text={tkey('wordActions.edit')} onClick={() => setAction('edit')}/>
+        <Button text={tkey('wordActions.translate')} onClick={() => window.open(word.translateLink)}/>
+        <Button text={tkey('wordActions.searchImgs')} onClick={() => window.open(word.imagesLink)}/>
+        <Button text={tkey('wordActions.delete')} onClick={() => setAction('delete')}/>
       </div>
     </Modal>
   );

@@ -10,7 +10,7 @@
   "login_submit": "Login",
 
   "wordEdit": {
-    "title": "Edit word",
+    "title": "Edit",
     "text": "Word",
     "textHolder": "Enter word",
     "translation": "Translation",
@@ -22,10 +22,19 @@
     "existErrText": "Word \"{0}\" already exist"
   },
 
-  "word_del_title": "Delete word",
-  "word_del_text": "Are you sure you want to delete word \"{0}\"?",
-  "word_del_yes": "Yes",
-  "word_del_no": "No",
+  "wordDel": {
+    "title": "Delete",
+    "text": "Are you sure you want to delete word \"{0}\"?",
+    "yes": "Yes",
+    "no": "No"
+  },
+
+  "wordActions": {
+    "edit": "Edit",
+    "translate": "Translate",
+    "searchImgs": "Search images",
+    "delete": "Delete"
+  },
 
   "profile_email": "Email",
   "profile_created": "Created",
