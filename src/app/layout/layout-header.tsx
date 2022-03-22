@@ -12,8 +12,8 @@ export function LayoutHeader() {
     return events.listen(EventTypes.historyChange, () => setValue(location.pathname));
   }, []);
 
-  function handleValueChange(event: React.SyntheticEvent): void {
-    history.push((event.target as HTMLSelectElement).value);
+  function handleValueChange(event: React.ChangeEvent<HTMLSelectElement>): void {
+    history.push(event.target.value);
   }
 
   return (

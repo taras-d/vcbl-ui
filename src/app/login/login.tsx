@@ -31,10 +31,7 @@ export function Login() {
         }
 
         if (res.status === 401) {
-          Modal.alert(
-            tkey('login.failedTitle'),
-            tkey('login.failedText')
-          );
+          Modal.alert(tkey('login.failedTitle'), tkey('login.failedText'));
         }
         
         setLoading(false);
