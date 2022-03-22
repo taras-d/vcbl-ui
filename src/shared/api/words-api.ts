@@ -1,7 +1,7 @@
 import {
   ApiResponse,
-  WordsListRequest,
-  WordsListResponse,
+  WordsRequest,
+  WordsResponse,
   Word,
   WordUpdateRequest,
   NewWord,
@@ -9,7 +9,7 @@ import {
 } from "@shared/interfaces";
 import { request } from "./request";
 
-function getWords(params: WordsListRequest, signal?: AbortSignal): Promise<WordsListResponse> {
+function getWords(params: WordsRequest, signal?: AbortSignal): Promise<WordsResponse> {
   return request({
     path: 'words',
     query: {
@@ -21,7 +21,7 @@ function getWords(params: WordsListRequest, signal?: AbortSignal): Promise<Words
     },
     signal,
   }).then((res: ApiResponse) => {
-    const body = res.body as WordsListResponse;
+    const body = res.body as WordsResponse;
     body.data.forEach(decorateWord);
     return body;
   });

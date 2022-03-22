@@ -46,13 +46,13 @@ export interface Word {
   imagesLink: string;
 }
 
-export interface WordsListRequest {
+export interface WordsRequest {
   limit?: number;
   skip?: number;
   search?: string;
 }
 
-export interface WordsListResponse {
+export interface WordsResponse {
   data: Word[];
   limit: number;
   skip: number;
