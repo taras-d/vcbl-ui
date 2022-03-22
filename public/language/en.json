@@ -9,16 +9,18 @@
   "login_password": "Enter password",
   "login_submit": "Login",
 
-  "word_edit_title": "Edit word",
-  "word_edit_text": "Word",
-  "word_edit_text_holder": "Enter word",
-  "word_edit_translation": "Translation",
-  "word_edit_translation_holder": "Enter translation",
-  "word_edit_created": "Created",
-  "word_edit_updated": "Updated",
-  "word_edit_save": "Save",
-  "word_edit_exist_title": "Edit error",
-  "word_edit_exist_text": "Word \"{0}\" already exist",
+  "wordEdit": {
+    "title": "Edit word",
+    "text": "Word",
+    "textHolder": "Enter word",
+    "translation": "Translation",
+    "translationHolder": "Enter translation",
+    "created": "Created",
+    "updated": "Updated",
+    "save": "Save",
+    "existErrTitle": "Edit error",
+    "existErrText": "Word \"{0}\" already exist"
+  },
 
   "word_del_title": "Delete word",
   "word_del_text": "Are you sure you want to delete word \"{0}\"?",

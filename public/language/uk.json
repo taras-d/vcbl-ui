@@ -9,16 +9,18 @@
   "login_password": "Введіть пароль",
   "login_submit": "Увійти",
 
-  "word_edit_title": "Редагування слова",
-  "word_edit_text": "Слово",
-  "word_edit_text_holder": "Введіть слово",
-  "word_edit_translation": "Переклад",
-  "word_edit_translation_holder": "Введіть переклад",
-  "word_edit_created": "Створено",
-  "word_edit_updated": "Оновлено",
-  "word_edit_save": "Зберегти",
-  "word_edit_exist_title": "Помилка редагування",
-  "word_edit_exist_text": "Слово \"{0}\" вже існує",
+  "wordEdit": {
+    "title": "Редагування слова",
+    "text": "Слово",
+    "textHolder": "Введіть слово",
+    "translation": "Переклад",
+    "translationHolder": "Введіть переклад",
+    "created": "Створено",
+    "updated": "Оновлено",
+    "save": "Зберегти",
+    "existErrTitle": "Помилка редагування",
+    "existErrText": "Слово \"{0}\" вже існує"
+  },
 
   "word_del_title": "Видалення слова",
   "word_del_text": "Ви дійсно бажаєте видалити слово \"{0}\"?",

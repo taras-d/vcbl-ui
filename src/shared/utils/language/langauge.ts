@@ -12,12 +12,28 @@ delete window.__lang;
 
 let dict: TranslateDict;
 
-function init(): Promise<void> {
-  return dictPromise
-    .then((res: TranslateDict) => dict = res)
-    .then(() => null);
+function transform(dict: TranslateDict, path?: string): TranslateDict {
+  const result: TranslateDict = {};
+
+  for (const key in dict) {
+    const val = dict[key];
+    const newKey = path ? `${path}.${key}` : key;
+
+    if (typeof val === 'object') {
+      Object.assign(result, transform(val, newKey));
+    } else {
+      result[newKey] = val;
+    }
+  }
+
+  return result;
 }
 
+function init(): Promise<void> {
+  return dictPromise
+    .then((res: TranslateDict) => dict = transform(res))
+    .then(() => null);
+}
 
 function get(): TranslateLang {
   return storage.get('lang') as TranslateLang || 'en';
