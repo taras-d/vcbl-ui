@@ -13,7 +13,7 @@ export function Route({ render, redirect, access }: RouteProps) {
   const [node, setNode] = useState<JSX.Element>(null);
 
   useEffect(() => {
-    const loggedIn = !!currentUser.token
+    const loggedIn = !!currentUser.user;
 
     if (redirect) {
       history.push(redirect);

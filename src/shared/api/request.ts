@@ -3,7 +3,7 @@ import {
   ApiResponse,
 } from '@shared/interfaces';
 import { Modal } from '@shared/ui';
-import { currentUser, tkey } from '@shared/utils';
+import { storage, tkey } from '@shared/utils';
 
 const apiUrl = 'https://vcbl-api.herokuapp.com';
 
@@ -63,9 +63,10 @@ function getQueryParams(query: Record<string, unknown>): string {
 
 function getHeaders(): Record<string, string> {
   const headers: Record<string, string> = { 'content-type': 'application/json' };
+  const token = storage.get('token');
 
-  if (currentUser.token) {
-    headers['Authorization'] = `Bearer ${currentUser.token}`;
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
   return headers;
