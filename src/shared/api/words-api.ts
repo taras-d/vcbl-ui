@@ -13,7 +13,7 @@ function getWords(params: WordsRequest, signal?: AbortSignal): Promise<WordsResp
   return request({
     path: 'words',
     query: {
-      $limit: params.limit || 15,
+      $limit: params.limit || 20,
       $skip: params.skip,
       $search: params.search || null,
       '$sort[createdAt]': '-1',
