@@ -8,8 +8,8 @@
     "failedTitle": "Login failed",
     "failedText": "Email or password incorrect",
     "header": "Vocabulary",
-    "email": "Enter email",
-    "password": "Enter password",
+    "emailHolder": "Email",
+    "passwordHolder": "Password",
     "submit": "Login"
   },
 
@@ -21,10 +21,17 @@
     "showMore": "Show more"
   },
 
+  "wordCreate": {
+    "title": "Add words",
+    "textHolder": "Text",
+    "translationHolder": "Translation",
+    "save": "Save"
+  },
+
   "wordEdit": {
     "title": "Edit",
-    "text": "Word",
-    "textHolder": "Enter word",
+    "text": "Text",
+    "textHolder": "Enter text",
     "translation": "Translation",
     "translationHolder": "Enter translation",
     "created": "Created",

@@ -8,8 +8,8 @@
     "failedTitle": "Вхід невдалий",
     "failedText": "Email або пароль невірні",
     "header": "Словник",
-    "email": "Введіть email",
-    "password": "Введіть пароль",
+    "emailHolder": "Email",
+    "passwordHolder": "Пароль",
     "submit": "Увійти"
   },
 
@@ -21,10 +21,17 @@
     "showMore": "Показати ще"
   },
 
+  "wordCreate": {
+    "title": "Додати слова",
+    "textHolder": "Текст",
+    "translationHolder": "Переклад",
+    "save": "Зберегти"
+  },
+
   "wordEdit": {
     "title": "Редагування",
-    "text": "Слово",
-    "textHolder": "Введіть слово",
+    "text": "Текст",
+    "textHolder": "Введіть текст",
     "translation": "Переклад",
     "translationHolder": "Введіть переклад",
     "created": "Створено",

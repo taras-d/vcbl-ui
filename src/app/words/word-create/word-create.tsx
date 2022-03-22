@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 
 import { Modal, Input, Button, CloseIcon } from '@shared/ui';
-import { events } from '@shared/utils';
+import { events, tkey } from '@shared/utils';
 import { EventTypes, NewWord, ApiResponse, Word, WordCreateResponse } from '@shared/interfaces';
 import { useAbortController } from '@shared/hooks';
 import { wordsApi } from '@shared/api';
@@ -86,7 +86,7 @@ export function WordCreate({ onCreated }: WordCreateProps) {
           <Input
             value={word.text}
             name="text"
-            placeholder="text"
+            placeholder={tkey('wordCreate.textHolder')}
             disabled={loading}
             onChange={event => handleInputChange(event, index)}
             onFocus={() => handleInputFocus(index)}
@@ -96,7 +96,7 @@ export function WordCreate({ onCreated }: WordCreateProps) {
           <Input
             value={word.translation}
             name="translation"
-            placeholder="translation"
+            placeholder={tkey('wordCreate.translationHolder')}
             disabled={loading}
             maxLength={100}
             onChange={event => handleInputChange(event, index)}
@@ -119,12 +119,12 @@ export function WordCreate({ onCreated }: WordCreateProps) {
   return open && (
     <Modal
       className="word-create"
-      header="Create word"
+      header={tkey('wordCreate.title')}
       onClose={handleModalClose}>
       <form autoComplete="off" onSubmit={handleSubmit}>
         {words.map(renderWord)}
         <div className="save-button">
-          <Button text="Save" disabled={!valid} loading={loading}/>
+          <Button text={tkey('wordCreate.save')} disabled={!valid} loading={loading}/>
         </div>
       </form>
     </Modal>

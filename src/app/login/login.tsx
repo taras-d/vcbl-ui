@@ -50,13 +50,13 @@ export function Login() {
       <div className="login-header">{tkey('login.header')}</div>
       <Input
         name="email"
-        placeholder={tkey('login.email')}
+        placeholder={tkey('login.emailHolder')}
         value={data.email}
         onChange={handleChange}
       />
       <Input
         name="password"
-        placeholder={tkey('login.password')}
+        placeholder={tkey('login.passwordHolder')}
         type="password"
         value={data.password}
         onChange={handleChange}
