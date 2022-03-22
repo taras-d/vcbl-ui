@@ -40,17 +40,24 @@
     "delete": "Delete"
   },
 
-  "profile_email": "Email",
-  "profile_created": "Created",
-  "profile_updated": "Updated",
-  "profile_lang": "Langauge",
-  "profile_lang_en": "English",
-  "profile_lang_uk": "Ukrainian",
-  "profile_theme": "Theme",
-  "profile_theme_default": "Default",
-  "profile_logout": "Logout",
+  "profile": {
+    "email": "Email",
+    "created": "Created",
+    "updated": "Updated",
+    "lang": "Langauge",
+    "langEn": "English",
+    "langUk": "Ukrainian",
+    "theme": "Theme",
+    "themeDefault": "Default",
+    "logout": "Logout"
+  },
 
-  "default_error_title": "Error",
-  "default_error_text": "Something went wrong",
-  "alert_ok": "Ok"
+  "defaultError": {
+    "title": "Error",
+    "text": "Something went wrong"
+  },
+
+  "alert": {
+    "ok": "Ok"
+  }
 }

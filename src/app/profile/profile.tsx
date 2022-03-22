@@ -31,37 +31,37 @@ export function Profile() {
   return (
     <div className="profile">
       <div className="row">
-        <div className="col-3">{tkey('profile_email')}</div>
+        <div className="col-3">{tkey('profile.email')}</div>
         <div className="col-9">
           <Input defaultValue={user.email} disabled />
         </div>
       </div>
       <div className="row">
-        <div className="col-3">{tkey('profile_created')}</div>
+        <div className="col-3">{tkey('profile.created')}</div>
         <div className="col-9">
           <Input defaultValue={created} disabled />
         </div>
       </div>
       <div className="row">
-        <div className="col-3">{tkey('profile_updated')}</div>
+        <div className="col-3">{tkey('profile.updated')}</div>
         <div className="col-9">
           <Input defaultValue={updated} disabled />
         </div>
       </div>
       <div className="row">
-        <div className="col-3">{tkey('profile_lang')}</div>
+        <div className="col-3">{tkey('profile.lang')}</div>
         <div className="col-9">
           <Select value={language.get()} onChange={handleLanguageChange}>
-            <option value="en">{tkey('profile_lang_en')}</option>
-            <option value="uk">{tkey('profile_lang_uk')}</option>
+            <option value="en">{tkey('profile.langEn')}</option>
+            <option value="uk">{tkey('profile.langUk')}</option>
           </Select>
         </div>
       </div>
       <div className="row">
-        <div className="col-3">{tkey('profile_theme')}</div>
+        <div className="col-3">{tkey('profile.theme')}</div>
         <div className="col-9">
           <Select value={theme} onChange={handleThemeChange}>
-            <option value="default">{tkey('profile_theme_default')}</option>
+            <option value="default">{tkey('profile.themeDefault')}</option>
           </Select>
         </div>
       </div>
@@ -69,7 +69,7 @@ export function Profile() {
       <Button
         className="profile-logout"
         onClick={handleLogoutClick}
-        text={tkey('profile_logout')}
+        text={tkey('profile.logout')}
       />
     </div>
   );

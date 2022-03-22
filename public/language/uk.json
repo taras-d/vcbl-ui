@@ -40,17 +40,24 @@
     "delete": "Видалити"
   },
 
-  "profile_email": "Email",
-  "profile_created": "Створено",
-  "profile_updated": "Оновлено",
-  "profile_lang": "Мова",
-  "profile_lang_en": "Англійська",
-  "profile_lang_uk": "Українська",
-  "profile_theme": "Тема",
-  "profile_theme_default": "Стандартна",
-  "profile_logout": "Вийти",
+  "profile": {
+    "email": "Email",
+    "created": "Створено",
+    "updated": "Оновлено",
+    "lang": "Мова",
+    "langEn": "Англійська",
+    "langUk": "Українська",
+    "theme": "Тема",
+    "themeDefault": "Стандартна",
+    "logout": "Вийти"
+  },
 
-  "default_error_title": "Помилка",
-  "default_error_text": "Щось пішло не так",
-  "alert_ok": "Ok"
+  "defaultError": {
+    "title": "Помилка",
+    "text": "Щось пішло не так"
+  },
+
+  "alert": {
+    "ok": "Ok"
+  }
 }

@@ -34,8 +34,8 @@ function handleError(error: Error | ApiResponse, params: ApiRequest): Promise<Ap
 
   if (!apiResponse.aborted && !params.hideError) {
     Modal.alert(
-      tkey('default_error_title'),
-      tkey('default_error_text')
+      tkey('defaultError.title'),
+      tkey('defaultError.text')
     );
   }
 
