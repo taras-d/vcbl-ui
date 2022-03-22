@@ -16,13 +16,13 @@
   "words": {
     "search": "Search",
     "add": "Add",
-    "empty": "No words",
+    "empty": "No data",
     "count": "Shown words: {0} of {1}",
     "showMore": "Show more"
   },
 
   "wordCreate": {
-    "title": "Add words",
+    "title": "Add",
     "textHolder": "Text",
     "translationHolder": "Translation",
     "save": "Save"

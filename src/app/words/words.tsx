@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 import { wordsApi } from '@shared/api';
-import { ApiResponse, Word, WordsListResponse, EventTypes } from '@shared/interfaces';
+import { ApiResponse, Word, WordsResponse, EventTypes } from '@shared/interfaces';
 import { Button, Spinner } from '@shared/ui';
 import { events, tkey } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
@@ -17,6 +17,7 @@ export function Words() {
   const [data, setData] = useState<Word[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [init, setInit] = useState(false);
 
   const empty = data.length === 0;
 
@@ -29,10 +30,11 @@ export function Words() {
     dataAbort.abort();
 
     wordsApi.getWords({ skip, search: search.current }, dataAbort.signal())
-      .then((res: WordsListResponse) => {
+      .then((res: WordsResponse) => {
         setData((_data: Word[]) => _data.concat(res.data));
         setTotal(res.total);
         setLoading(false);
+        setInit(true);
       })
       .catch((res: ApiResponse) => {
         if (res.aborted) {
@@ -87,10 +89,12 @@ export function Words() {
 
   return (
     <div className="words">
-      <div className="top-actions">
-        <WordsSearch onSearch={handleWordsSearch} />
-        <Button text={tkey('words.add')} onClick={handleAddClick} />
-      </div>
+      {init && (
+        <div className="top-actions">
+          <WordsSearch onSearch={handleWordsSearch} />
+          <Button text={tkey('words.add')} onClick={handleAddClick} />
+        </div>
+      )}
 
       <WordsList words={data} onWordClick={handleWordClick} />
 
