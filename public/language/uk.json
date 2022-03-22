@@ -1,13 +1,17 @@
 {
-  "header_vocabulary": "Словник",
-  "header_profile": "Профіль",
+  "header": {
+    "vocabulary": "Словник",
+    "profile": "Профіль"
+  },
 
-  "login_failed_title": "Вхід невдалий",
-  "login_failed_text": "Email або пароль неправильні",
-  "login_header": "Словник",
-  "login_email": "Введіть email",
-  "login_password": "Введіть пароль",
-  "login_submit": "Увійти",
+  "login": {
+    "failedTitle": "Вхід невдалий",
+    "failedText": "Email або пароль невірні",
+    "header": "Словник",
+    "email": "Введіть email",
+    "password": "Введіть пароль",
+    "submit": "Увійти"
+  },
 
   "wordEdit": {
     "title": "Редагування",

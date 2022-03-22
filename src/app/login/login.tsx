@@ -32,8 +32,8 @@ export function Login() {
 
         if (res.status === 401) {
           Modal.alert(
-            tkey('login_failed_title'),
-            tkey('login_failed_text')
+            tkey('login.failedTitle'),
+            tkey('login.failedText')
           );
         }
         
@@ -47,21 +47,21 @@ export function Login() {
   
   return (
     <form className="login" autoCapitalize="off" onSubmit={handleSubmit}>
-      <div className="login-header">{tkey('login_header')}</div>
+      <div className="login-header">{tkey('login.header')}</div>
       <Input
         name="email"
-        placeholder={tkey('login_email')}
+        placeholder={tkey('login.email')}
         value={data.email}
         onChange={handleChange}
       />
       <Input
         name="password"
-        placeholder={tkey('login_password')}
+        placeholder={tkey('login.password')}
         type="password"
         value={data.password}
         onChange={handleChange}
       />
-      <Button text={tkey('login_submit')} disabled={!canSubmit()} loading={loading}/>
+      <Button text={tkey('login.submit')} disabled={!canSubmit()} loading={loading}/>
     </form>
   );
 }

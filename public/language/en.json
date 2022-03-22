@@ -1,13 +1,17 @@
 {
-  "header_vocabulary": "Vocabulary",
-  "header_profile": "Profile",
+  "header": {
+    "vocabulary": "Vocabulary",
+    "profile": "Profile"
+  },
 
-  "login_failed_title": "Login failed",
-  "login_failed_text": "Email or password incorrect",
-  "login_header": "Vocabulary",
-  "login_email": "Enter email",
-  "login_password": "Enter password",
-  "login_submit": "Login",
+  "login": {
+    "failedTitle": "Login failed",
+    "failedText": "Email or password incorrect",
+    "header": "Vocabulary",
+    "email": "Enter email",
+    "password": "Enter password",
+    "submit": "Login"
+  },
 
   "wordEdit": {
     "title": "Edit",
