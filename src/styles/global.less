@@ -11,36 +11,3 @@ body {
 *:before {
   box-sizing: border-box;
 }
-
-.row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.columns(@n, @i: 1) when (@i <= @n) {
-  .col-@{i} {
-    width: @i * (100% / @n);
-  }
-  .columns(@n, @i + 1);
-}
-
-.columns(12);
-
-.base-input {
-  font-size: inherit;
-  font-family: inherit;
-  border: 1px solid #005282;
-  border-radius: 2px;
-  outline: none;
-  padding: 4px 8px;
-  width: 100%;
-  height: 28px;
-  display: block;
-  color: inherit;
-  background-color: white;
-  -webkit-tap-highlight-color: transparent;
-  &:disabled {
-    cursor: not-allowed;
-  }
-}

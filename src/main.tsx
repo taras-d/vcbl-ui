@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './styles/global.less';
+import './styles/index.less';
 import { App } from './app/app';
 import { language } from '@shared/utils';
 

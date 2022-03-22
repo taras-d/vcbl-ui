@@ -1,18 +1,16 @@
 .word-actions {
-  .modal-body {
-    text-align: center;
-  }
-  .options {
-    display: inline-block;
-    margin: 0 auto;
-  }
   .button {
     display: block;
+    margin: 8px auto;
     width: 100%;
+    max-width: 170px;
     padding-left: 15px;
     padding-right: 15px;
-    &:not(:last-child) {
-      margin-bottom: 8px;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

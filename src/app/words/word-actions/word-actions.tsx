@@ -46,14 +46,11 @@ export function WordActions({ onEdited, onDeleted}: WordActionsProps) {
     <Modal
       className="word-actions"
       header={word.text}
-      onClose={handleClose}
-    >
-      <div className="options">
-        <Button text={tkey('wordActions.edit')} onClick={() => setAction('edit')}/>
-        <Button text={tkey('wordActions.translate')} onClick={() => window.open(word.translateLink)}/>
-        <Button text={tkey('wordActions.searchImgs')} onClick={() => window.open(word.imagesLink)}/>
-        <Button text={tkey('wordActions.delete')} onClick={() => setAction('delete')}/>
-      </div>
+      onClose={handleClose}>
+      <Button text={tkey('wordActions.edit')} onClick={() => setAction('edit')}/>
+      <Button text={tkey('wordActions.translate')} onClick={() => window.open(word.translateLink)}/>
+      <Button text={tkey('wordActions.searchImgs')} onClick={() => window.open(word.imagesLink)}/>
+      <Button text={tkey('wordActions.delete')} onClick={() => setAction('delete')}/>
     </Modal>
   );
 }
