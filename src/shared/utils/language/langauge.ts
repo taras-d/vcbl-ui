@@ -28,8 +28,16 @@ function set(value: TranslateLang): void {
   location.reload();
 }
 
-export function tkey(key: string): string {
-  return dict[key] || '';
+export function tkey(key: string, ...args: unknown[]): string {
+  const value = dict[key] || '';
+
+  if (args.length && value) {
+    return value.replace(/\{(\d+)\}/, (_, index: string) => {
+      return args[+index] as string;
+    });
+  }
+
+  return value;
 }
 
 export const language = {

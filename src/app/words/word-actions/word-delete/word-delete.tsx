@@ -5,6 +5,7 @@ import { Word } from '@shared/interfaces';
 import { Modal, Button } from '@shared/ui';
 import { useAbortController } from '@shared/hooks';
 import { wordsApi } from '@shared/api';
+import { tkey } from '@shared/utils';
 import './word-delete.less';
 
 interface WordDelete {
@@ -33,15 +34,15 @@ export function WordDelete({ word, onClose, onDeleted }: WordDelete) {
   return (
     <Modal
       className="word-delete"
-      header="Delete word"
+      header={tkey('word_del_title')}
       onClose={onClose}
     >
       <div className="delete-message">
-        Are you sure you want to delete word "<b>{word.text}</b>"?
+        {tkey('word_del_text', word.text)}
       </div>
       <div className="delete-buttons">
-        <Button text="Yes" onClick={handleYesClick} loading={loading}/>
-        <Button text="No" onClick={onClose} disabled={loading}/>
+        <Button text={tkey('word_del_yes')} onClick={handleYesClick} loading={loading}/>
+        <Button text={tkey('word_del_no')} onClick={onClose} disabled={loading}/>
       </div>
     </Modal>
   );

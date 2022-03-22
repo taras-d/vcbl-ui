@@ -9,6 +9,11 @@
   "login_password": "Enter password",
   "login_submit": "Login",
 
+  "word_del_title": "Delete word",
+  "word_del_text": "Are you sure you want to delete word \"{0}\"?",
+  "word_del_yes": "Yes",
+  "word_del_no": "No",
+
   "profile_email": "Email",
   "profile_created": "Created",
   "profile_updated": "Updated",

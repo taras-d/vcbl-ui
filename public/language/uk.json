@@ -9,6 +9,11 @@
   "login_password": "Введіть пароль",
   "login_submit": "Увійти",
 
+  "word_del_title": "Видалення слова",
+  "word_del_text": "Ви дійсно бажаєте видалити слово \"{0}\"?",
+  "word_del_yes": "Так",
+  "word_del_no": "Ні",
+
   "profile_email": "Email",
   "profile_created": "Створено",
   "profile_updated": "Оновлено",
