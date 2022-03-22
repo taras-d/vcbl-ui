@@ -13,6 +13,14 @@
     "submit": "Login"
   },
 
+  "words": {
+    "search": "Search",
+    "add": "Add",
+    "empty": "No words",
+    "count": "Shown words: {0} of {1}",
+    "showMore": "Show more"
+  },
+
   "wordEdit": {
     "title": "Edit",
     "text": "Word",

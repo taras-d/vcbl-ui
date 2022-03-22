@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import { wordsApi } from '@shared/api';
 import { ApiResponse, Word, WordsListResponse, EventTypes } from '@shared/interfaces';
 import { Button, Spinner } from '@shared/ui';
-import { events } from '@shared/utils';
+import { events, tkey } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
 import { WordsList } from './words-list/words-list';
 import { WordsSearch } from './words-search/words-search';
@@ -89,17 +89,17 @@ export function Words() {
     <div className="words">
       <div className="top-actions">
         <WordsSearch onSearch={handleWordsSearch} />
-        <Button text="Add" onClick={handleAddClick} />
+        <Button text={tkey('words.add')} onClick={handleAddClick} />
       </div>
 
       <WordsList words={data} onWordClick={handleWordClick} />
 
-      {empty && (loading ? <Spinner /> : <div className="no-words">No words</div>)}
+      {empty && (loading ? <Spinner /> : <div className="empty">{tkey('words.empty')}</div>)}
 
-      {!empty && <div className="words-count">Shown {data.length} word(s) of {total}</div>}
+      {!empty && <div className="words-count">{tkey('words.count', data.length, total)}</div>}
 
       {total > data.length && (
-        <Button className="show-more" text="Show more" loading={loading} onClick={handleShowMoreClick} />
+        <Button className="show-more" text={tkey('words.showMore')} loading={loading} onClick={handleShowMoreClick} />
       )}
 
       <WordCreate onCreated={handleWordCreated} />

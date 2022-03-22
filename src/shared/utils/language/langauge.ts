@@ -47,8 +47,8 @@ function set(value: TranslateLang): void {
 export function tkey(key: string, ...args: unknown[]): string {
   const value = dict[key] || '';
 
-  if (args.length && value) {
-    return value.replace(/\{(\d+)\}/, (_, index: string) => {
+  if (value && args.length) {
+    return value.replace(/\{(\d+)\}/g, (_, index: string) => {
       return args[+index] as string;
     });
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { CloseIcon, Input } from "@shared/ui";
+import { tkey } from "@shared/utils";
 import './words-search.less';
 
 export interface WordsSearchProps {
@@ -31,7 +32,7 @@ export function WordsSearch({ onSearch }: WordsSearchProps) {
   return (
     <div className="words-search">
       <Input
-        placeholder="Search"
+        placeholder={tkey('words.search')}
         value={value}
         onChange={handleValueChange}
       />
