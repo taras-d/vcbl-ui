@@ -4,7 +4,7 @@ import { ApiResponse, Word } from '@shared/interfaces';
 import { Modal, Button, Input } from '@shared/ui';
 import { wordsApi } from '@shared/api';
 import { useAbortController } from '@shared/hooks';
-import { formatDate } from '@shared/utils';
+import { formatDate, tkey } from '@shared/utils';
 import './word-edit.less';
 
 interface WordDelete {
@@ -51,7 +51,10 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
       })
       .catch((res: ApiResponse) => {
         if (res.status === 400) {
-          Modal.alert('Edit error', `Word with text "${word.text}" already exist`);
+          Modal.alert(
+            tkey('word_edit_exist_title'),
+            tkey('word_edit_exist_text', word.text)
+          );
         }
         setLoading(false);
       });
@@ -71,18 +74,18 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
   return (
     <Modal
       className="word-edit"
-      header="Edit word"
+      header={tkey('word_edit_title')}
       onClose={onClose}
     >
       <form autoCapitalize="off" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-4">
-            Text
+            {tkey('word_edit_text')}
           </div>
           <div className="col-8">
             <Input
               name="text"
-              placeholder="text"
+              placeholder={tkey('word_edit_text_holder')}
               value={data.text}
               onChange={handleChange}
             />
@@ -90,12 +93,12 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
         </div>
         <div className="row">
           <div className="col-4">
-            Translation
+            {tkey('word_edit_translation')}
           </div>
           <div className="col-8">
             <Input
               name="translation"
-              placeholder="translation"
+              placeholder={tkey('word_edit_translation_holder')}
               maxLength={100}
               value={data.translation}
               onChange={handleChange} />
@@ -103,7 +106,7 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
         </div>
         <div className="row">
           <div className="col-4">
-            Created
+            {tkey('word_edit_created')}
           </div>
           <div className="col-8">
             <Input name="created" defaultValue={created} disabled />
@@ -111,14 +114,14 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
         </div>
         <div className="row">
           <div className="col-4">
-            Updated
+            {tkey('word_edit_updated')}
           </div>
           <div className="col-8">
-            <Input name="translation" defaultValue={updated} disabled />
+            <Input name="updated" defaultValue={updated} disabled />
           </div>
         </div>
         <div className="edit-button">
-          <Button text="Save" loading={loading} disabled={!valid}/>
+          <Button text={tkey('word_edit_save')} loading={loading} disabled={!valid}/>
         </div>
       </form>
     </Modal>
