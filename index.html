@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="" id="theme" />
+
     <script>
       (function() {
         let lang = localStorage.getItem('vcbl_lang');
         lang = ['en', 'uk'].includes(lang) ? lang : 'en';
         window.__lang = fetch(`language/${lang}.json`).then(r => r.json());
+
+        let theme = localStorage.getItem('vcbl_theme');
+        theme = ['default'].includes(theme) ? theme : 'default';
+        document.getElementById('theme').href = `theme/${theme}.css`;
       }());
     </script>
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
