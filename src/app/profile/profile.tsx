@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from 'react';
 
 import { Input, Select, Button, } from '@shared/ui';
-import { currentUser, formatDate, language, tkey } from '@shared/utils';
+import { currentUser, formatDate, language, tkey, theme } from '@shared/utils';
 import { authApi } from '@shared/api/auth-api';
-import { TranslateLang } from '@shared/interfaces';
+import { TranslateLang, Theme } from '@shared/interfaces';
 
 import './profile.less';
 
 export function Profile() {
-  const [theme, setTheme] = useState('default');
+  const [themeVal, setThemeVal] = useState<Theme>(theme.get());
 
   const user = currentUser.user;
 
@@ -21,7 +21,9 @@ export function Profile() {
   }
 
   function handleThemeChange(event: React.ChangeEvent<HTMLSelectElement>): void {
-    setTheme(event.target.value);
+    const value = event.target.value as Theme;
+    setThemeVal(value);
+    theme.set(value);
   }
 
   function handleLogoutClick(): void {
@@ -60,8 +62,9 @@ export function Profile() {
       <div className="row">
         <div className="col-3">{tkey('profile.theme')}</div>
         <div className="col-9">
-          <Select value={theme} onChange={handleThemeChange}>
+          <Select value={themeVal} onChange={handleThemeChange}>
             <option value="default">{tkey('profile.themeDefault')}</option>
+            <option value="dark">{tkey('profile.themeDark')}</option>
           </Select>
         </div>
       </div>
