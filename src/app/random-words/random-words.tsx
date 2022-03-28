@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Word, EventTypes, ApiResponse } from '@shared/interfaces';
-import { Spinner, Button, Modal } from '@shared/ui';
+import { Spinner, Button, Modal, NoData } from '@shared/ui';
 import { tkey, events } from '@shared/utils';
 import { wordsApi } from '@shared/api';
 import { useAbortController } from '@shared/hooks';
@@ -60,7 +60,7 @@ export function RandomWords() {
 
   function renderContent() {
     if (!data.length) {
-      return loading ? <Spinner /> : <div className="empty">{tkey('misc.noData')}</div>;
+      return loading ? <Spinner /> : <NoData />;
     }
 
     return (

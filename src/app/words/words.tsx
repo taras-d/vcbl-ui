@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 import { wordsApi } from '@shared/api';
 import { ApiResponse, Word, WordsResponse, EventTypes } from '@shared/interfaces';
-import { Button, Spinner } from '@shared/ui';
+import { Button, Spinner, NoData } from '@shared/ui';
 import { events, tkey } from '@shared/utils';
 import { useAbortController } from '@shared/hooks';
 import { WordsList } from './words-list/words-list';
@@ -98,7 +98,7 @@ export function Words() {
 
       <WordsList words={data} onWordClick={handleWordClick} />
 
-      {empty && (loading ? <Spinner /> : <div className="empty">{tkey('misc.noData')}</div>)}
+      {empty && (loading ? <Spinner /> : <NoData />)}
 
       {!empty && <div className="words-count">{tkey('words.count', data.length, total)}</div>}
 
