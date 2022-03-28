@@ -11,12 +11,21 @@
     &:not(:last-child) {
       border-bottom: 1px dashed gray;
     }
-    &:hover {
+    &:not(.deleted):hover {
       background-color: @primary-color-light;
     }
   }
 
   .word-text {
     font-weight: bold;
+  }
+
+  .deleted {
+    cursor: not-allowed;
+    .word-text,
+    .word-translation {
+      opacity: 0.4;
+      text-decoration: line-through;
+    }
   }
 }

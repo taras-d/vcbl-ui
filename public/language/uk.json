@@ -1,6 +1,7 @@
 {
   "header": {
     "vocabulary": "Словник",
+    "randomWords": "Випадкові слова",
     "profile": "Профіль"
   },
 
@@ -53,6 +54,11 @@
     "translate": "Перекласти",
     "searchImgs": "Пошук зображень",
     "delete": "Видалити"
+  },
+
+  "randomWords": {
+    "refresh": "Оновити",
+    "empty": "Немає даних"
   },
 
   "profile": {

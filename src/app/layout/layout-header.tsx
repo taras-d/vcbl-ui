@@ -20,6 +20,7 @@ export function LayoutHeader() {
     <div className="layout-header">
       <Select value={value} onChange={handleValueChange}>
         <option value={AppRoutes.Home}>{tkey('header.vocabulary')}</option>
+        <option value={AppRoutes.Random}>{tkey('header.randomWords')}</option>
         <option value={AppRoutes.Profile}>{tkey('header.profile')}</option>
       </Select>
     </div>

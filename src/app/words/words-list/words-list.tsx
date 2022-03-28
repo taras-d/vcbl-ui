@@ -1,4 +1,5 @@
 import { Word } from "@shared/interfaces";
+import { classes } from "@shared/utils";
 import './words-list.less';
 
 interface WordProps {
@@ -8,8 +9,10 @@ interface WordProps {
 
 export function WordsList({ words, onWordClick }: WordProps) {
   function renderWord(word: Word): JSX.Element {
+    const itemClassName = classes('word', { deleted: word.deleted });
     return (
-      <div className="word" key={word._id} onClick={() => onWordClick(word)}>
+      <div className={itemClassName} key={word._id}
+        onClick={() => !word.deleted && onWordClick(word)}>
         <span className="word-text">{word.text}</span>
         {word.translation && <span className="word-translation">{' / '}{word.translation}</span>}
       </div>

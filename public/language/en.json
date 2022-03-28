@@ -1,6 +1,7 @@
 {
   "header": {
     "vocabulary": "Vocabulary",
+    "randomWords": "Random words",
     "profile": "Profile"
   },
 
@@ -53,6 +54,11 @@
     "translate": "Translate",
     "searchImgs": "Search images",
     "delete": "Delete"
+  },
+
+  "randomWords": {
+    "refresh": "Refresh",
+    "empty": "No data"
   },
 
   "profile": {

@@ -27,6 +27,17 @@ function getWords(params: WordsRequest, signal?: AbortSignal): Promise<WordsResp
   });
 }
 
+function getRandomWords(signal?: AbortSignal): Promise<Word[]> {
+  return request({
+    path: 'random-words',
+    signal
+  }).then((res: ApiResponse) => {
+    const words = res.body as Word[];
+    words.forEach(decorateWord);
+    return words;
+  })
+}
+
 function createWord(words: NewWord[], signal?: AbortSignal): Promise<WordCreateResponse> {
   return request({
     method: 'post',
@@ -71,6 +82,7 @@ function decorateWord(word: Word): Word {
 
 export const wordsApi = {
   getWords,
+  getRandomWords,
   createWord,
   updateWord,
   deleteWord,
