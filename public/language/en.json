@@ -42,8 +42,7 @@
     "created": "Created",
     "updated": "Updated",
     "save": "Save",
-    "existErrTitle": "Edit error",
-    "existErrText": "Word \"{0}\" already exist"
+    "existErr": "Word \"{0}\" already exist"
   },
 
   "wordDel": {
