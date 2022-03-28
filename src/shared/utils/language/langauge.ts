@@ -1,4 +1,4 @@
-import { storage } from '@shared/utils';
+import { storage, isObject } from '@shared/utils';
 import { TranslateLang, TranslateDict } from '@shared/interfaces';
 
 declare global {
@@ -19,7 +19,7 @@ function transform(dict: TranslateDict, path?: string): TranslateDict {
     const val = dict[key];
     const newKey = path ? `${path}.${key}` : key;
 
-    if (typeof val === 'object') {
+    if (typeof val === 'object' && !Array.isArray(val)) {
       Object.assign(result, transform(val, newKey));
     } else {
       result[newKey] = val;

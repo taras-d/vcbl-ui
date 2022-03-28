@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Spinner, Select, NoData } from '@shared/ui';
 import { wordsApi } from '@shared/api';
 import { useAbortController } from '@shared/hooks';
-import './words-stats.less';
 import { ApiResponse } from '@shared/interfaces';
+import { WordsChart } from './words-chart/words-chart';
+import './words-stats.less';
 
 export function WordsStats() {
   const dataAbort = useAbortController();
@@ -52,7 +53,6 @@ export function WordsStats() {
   function handleYearChange(event: React.ChangeEvent<HTMLSelectElement>): void {
     const year = +event.target.value;
     setActiveYear(year);
-    setLoading(true);
     loadData(year);
   }
 
@@ -72,8 +72,7 @@ export function WordsStats() {
             {years.map((year: number) => <option value={year} key={year}>{year}</option>)}
           </Select>
         </div>
-
-        <div>{JSON.stringify(data)}</div>
+        <WordsChart data={data} />
       </>
     );
   }

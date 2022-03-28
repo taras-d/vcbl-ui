@@ -1,0 +1,33 @@
+@import 'variables';
+
+.words-chart {
+  display: flex;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 0 8px;
+  font-size: 14px;
+
+  ul {
+    margin: 0;
+    padding: 6px 0;
+    list-style-type: none;
+    li {
+      height: 16px;
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .progress {
+    flex: 1;
+    margin: 0 6px;
+    background-color: @secondary-color;
+    border-left: 1px solid @primary-color;
+    li {
+      border: 1px solid @primary-color;
+      border-left: 0;
+      background-color: @primary-color-light;
+    }
+  }
+}
