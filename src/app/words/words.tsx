@@ -19,7 +19,7 @@ export function Words() {
   const [loading, setLoading] = useState(true);
   const [init, setInit] = useState(false);
 
-  const empty = data.length === 0;
+  const empty = !data.length;
 
   useEffect(() => {
     loadData();

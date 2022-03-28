@@ -58,7 +58,7 @@ export function RandomWords() {
     loadData();
   }
 
-  function renderContent() {
+  function renderContent(): JSX.Element {
     if (!data.length) {
       return loading ? <Spinner /> : <NoData />;
     }
