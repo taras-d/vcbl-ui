@@ -2,6 +2,7 @@ export enum AppRoutes {
   Home = '/',
   Login = '/login',
   Profile = '/profile',
+  Stats = '/stats',
   Random = '/random',
   NotMatch = '*'
 }

@@ -38,6 +38,26 @@ function getRandomWords(signal?: AbortSignal): Promise<Word[]> {
   })
 }
 
+function getStatsYears(signal?: AbortSignal): Promise<number[]> {
+  return request({
+    path: 'words-stats',
+    query: { type: 'available-years' },
+    signal,
+  }).then((res: ApiResponse) => {
+    return res.body as number[];
+  });
+}
+
+function getStatsData(year: number, signal?: AbortSignal): Promise<number[]> {
+  return request({
+    path: 'words-stats',
+    query: { type: 'total-in-month', year },
+    signal,
+  }).then((res: ApiResponse) => {
+    return res.body as number[];
+  });
+}
+
 function createWord(words: NewWord[], signal?: AbortSignal): Promise<WordCreateResponse> {
   return request({
     method: 'post',
@@ -83,6 +103,8 @@ function decorateWord(word: Word): Word {
 export const wordsApi = {
   getWords,
   getRandomWords,
+  getStatsYears,
+  getStatsData,
   createWord,
   updateWord,
   deleteWord,
