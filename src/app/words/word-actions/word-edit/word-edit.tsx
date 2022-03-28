@@ -51,7 +51,7 @@ export function WordEdit({ word, onClose, onEdited }: WordDelete) {
       })
       .catch((res: ApiResponse) => {
         if (res.status === 400) {
-          Modal.alert({ text: tkey('wordEdit.existErr', word.text) });
+          Modal.alert({ text: tkey('wordEdit.existErr', data.text) });
         }
         setLoading(false);
       });
