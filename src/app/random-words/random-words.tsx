@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { Word, EventTypes } from '@shared/interfaces';
-import { Spinner, Button } from '@shared/ui';
+import { Word, EventTypes, ApiResponse } from '@shared/interfaces';
+import { Spinner, Button, Modal } from '@shared/ui';
 import { tkey, events } from '@shared/utils';
 import { wordsApi } from '@shared/api';
 import { useAbortController } from '@shared/hooks';
@@ -26,7 +26,14 @@ export function RandomWords() {
         setLoading(false);
         setData(words);
       })
-      .catch(() => {
+      .catch((res: ApiResponse) => {
+        if (res.aborted) {
+          return;
+        }
+        
+        if (res.status === 400) {
+          Modal.alert({ text: tkey('randomWords.notEnoughWords')})
+        }
         setLoading(false);
       });
   }
@@ -53,7 +60,7 @@ export function RandomWords() {
 
   function renderContent() {
     if (!data.length) {
-      return loading ? <Spinner /> : <div className="empty">{tkey('randomWords.empty')}</div>;
+      return loading ? <Spinner /> : <div className="empty">{tkey('misc.noData')}</div>;
     }
 
     return (

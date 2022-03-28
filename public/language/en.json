@@ -17,9 +17,13 @@
   "words": {
     "search": "Search",
     "add": "Add",
-    "empty": "No data",
     "count": "Shown words: {0} of {1}",
     "showMore": "Show more"
+  },
+
+  "randomWords": {
+    "refresh": "Refresh",
+    "notEnoughWords": "Not enough words in vocabulary"
   },
 
   "wordCreate": {
@@ -56,11 +60,6 @@
     "delete": "Delete"
   },
 
-  "randomWords": {
-    "refresh": "Refresh",
-    "empty": "No data"
-  },
-
   "profile": {
     "email": "Email",
     "created": "Created",
@@ -74,12 +73,10 @@
     "logout": "Logout"
   },
 
-  "defaultError": {
-    "title": "Error",
-    "text": "Something went wrong"
-  },
-
-  "alert": {
-    "ok": "Ok"
+  "misc": {
+    "defErrTitle": "Error",
+    "defErrText": "Something went wrong",
+    "noData": "No data",
+    "okBtn": "Ok"
   }
 }

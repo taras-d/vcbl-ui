@@ -21,7 +21,7 @@ export function AlertContainer() {
       onClose={closeAlert}>
       {options.text}
       <div className="alert-actions">
-        <Button text={tkey('alert.ok')} onClick={closeAlert}/>
+        <Button text={tkey('misc.okBtn')} onClick={closeAlert}/>
       </div>
     </Modal>
   );

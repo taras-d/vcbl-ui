@@ -98,7 +98,7 @@ export function Words() {
 
       <WordsList words={data} onWordClick={handleWordClick} />
 
-      {empty && (loading ? <Spinner /> : <div className="empty">{tkey('words.empty')}</div>)}
+      {empty && (loading ? <Spinner /> : <div className="empty">{tkey('misc.noData')}</div>)}
 
       {!empty && <div className="words-count">{tkey('words.count', data.length, total)}</div>}
 

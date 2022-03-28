@@ -41,7 +41,7 @@ function handleError(error: Error | ApiResponse, params: ApiRequest): Promise<Ap
     if (isSessionInvalid(apiResponse, params)) {
       authApi.logout();
     } else if (!params.hideDefaultError) {
-      Modal.alert(tkey('defaultError.title'), tkey('defaultError.text'));
+      Modal.alert({ text: tkey('misc.defErrText') });
     }
   }
 

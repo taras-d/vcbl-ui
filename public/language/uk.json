@@ -17,9 +17,13 @@
   "words": {
     "search": "Пошук",
     "add": "Додати",
-    "empty": "Немає даних",
     "count": "Показано слів: {0} з {1}",
     "showMore": "Показати ще"
+  },
+
+  "randomWords": {
+    "refresh": "Оновити",
+    "notEnoughWords": "Не достатньо слів в словнику"
   },
 
   "wordCreate": {
@@ -56,11 +60,6 @@
     "delete": "Видалити"
   },
 
-  "randomWords": {
-    "refresh": "Оновити",
-    "empty": "Немає даних"
-  },
-
   "profile": {
     "email": "Email",
     "created": "Створено",
@@ -74,12 +73,10 @@
     "logout": "Вийти"
   },
 
-  "defaultError": {
-    "title": "Помилка",
-    "text": "Щось пішло не так"
-  },
-
-  "alert": {
-    "ok": "Ok"
+  "misc": {
+    "defErrTitle": "Помилка",
+    "defErrText": "Щось пішло не так",
+    "noData": "Немає даних",
+    "okBtn": "Ok"
   }
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
-import { classes, events } from '@shared/utils';
-import { EventTypes } from '@shared/interfaces';
+import { classes, events, tkey } from '@shared/utils';
+import { EventTypes, AlertOptions } from '@shared/interfaces';
 import { CloseIcon } from '@shared/ui';
 import './modal.less';
 
@@ -78,6 +78,10 @@ export function Modal({
   return ReactDOM.createPortal(modal, document.body);
 }
 
-Modal.alert = (title: string, text: string ): void => {
-  events.trigger(EventTypes.showAlert, { title, text });
+Modal.alert = (options: AlertOptions): void => {
+  if (!options.title) {
+    options.title = tkey('misc.defErrTitle');
+  }
+
+  events.trigger(EventTypes.showAlert, options);
 }
