@@ -5,7 +5,7 @@ let user = storage.get('user') as User;
 
 function save(response: LoginResponse): void {
   user = response.user;
-  storage.set('token', response.accessToken);
+  storage.set('token', response.token);
   storage.set('user', response.user);
 }
 

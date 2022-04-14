@@ -9,11 +9,18 @@ import { authApi } from '@shared/api';
 const apiUrl = 'https://vcbl-api.herokuapp.com';
 
 function isSessionInvalid(response: ApiResponse, params: ApiRequest): boolean {
-  return response.status === 401 && params.path !== 'authentication';
+  return response.status === 401 && params.path !== 'user/login';
 }
 
 function handleResponse(response: Response): Promise<ApiResponse> {
-  return response.json()
+  return response.text()
+    .then((text: string) => {
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        return null;
+      }
+    })
     .then((body: unknown) => {
       const apiRes = { status: response.status, body };
 

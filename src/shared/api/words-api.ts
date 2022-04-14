@@ -13,11 +13,9 @@ function getWords(params: WordsRequest, signal?: AbortSignal): Promise<WordsResp
   return request({
     path: 'words',
     query: {
-      $limit: params.limit || 20,
-      $skip: params.skip,
-      $search: params.search || null,
-      '$sort[createdAt]': '-1',
-      '$sort[text]': '1',
+      skip: params.skip,
+      limit: params.limit || 20,
+      search: params.search || null
     },
     signal,
   }).then((res: ApiResponse) => {
@@ -29,7 +27,7 @@ function getWords(params: WordsRequest, signal?: AbortSignal): Promise<WordsResp
 
 function getRandomWords(signal?: AbortSignal): Promise<Word[]> {
   return request({
-    path: 'random-words',
+    path: 'words/random',
     signal
   }).then((res: ApiResponse) => {
     const words = res.body as Word[];
@@ -40,8 +38,7 @@ function getRandomWords(signal?: AbortSignal): Promise<Word[]> {
 
 function getStatsYears(signal?: AbortSignal): Promise<number[]> {
   return request({
-    path: 'words-stats',
-    query: { type: 'available-years' },
+    path: 'stats/years',
     signal,
   }).then((res: ApiResponse) => {
     return res.body as number[];
@@ -50,8 +47,7 @@ function getStatsYears(signal?: AbortSignal): Promise<number[]> {
 
 function getStatsData(year: number, signal?: AbortSignal): Promise<number[]> {
   return request({
-    path: 'words-stats',
-    query: { type: 'total-in-month', year },
+    path: 'stats/data',
     signal,
   }).then((res: ApiResponse) => {
     return res.body as number[];
