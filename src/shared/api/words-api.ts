@@ -48,6 +48,7 @@ function getStatsYears(signal?: AbortSignal): Promise<number[]> {
 function getStatsData(year: number, signal?: AbortSignal): Promise<number[]> {
   return request({
     path: 'stats/data',
+    query: { year },
     signal,
   }).then((res: ApiResponse) => {
     return res.body as number[];
