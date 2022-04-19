@@ -7,3 +7,4 @@ export * from './events/events';
 export * from './language/langauge';
 export * from './theme/theme';
 export * from './object/object';
+export * from './regex/regex';

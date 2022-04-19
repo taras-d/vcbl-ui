@@ -96,7 +96,7 @@ export function Words() {
         </div>
       )}
 
-      <WordsList words={data} onWordClick={handleWordClick} />
+      <WordsList words={data} highlight={search.current} onWordClick={handleWordClick} />
 
       {empty && (loading ? <Spinner /> : <NoData />)}
 

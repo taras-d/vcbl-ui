@@ -1,20 +1,43 @@
 import { Word } from "@shared/interfaces";
-import { classes } from "@shared/utils";
+import { classes, escapeRegex } from "@shared/utils";
 import './words-list.less';
 
 interface WordProps {
   words: Word[];
+  highlight: string;
   onWordClick: (word: Word) => void;
 }
 
-export function WordsList({ words, onWordClick }: WordProps) {
+function wrapHighlight(value: string, highlight: string): string {
+  if (!value) {
+    return value;
+  }
+
+  const re = new RegExp(escapeRegex(highlight), 'ig');
+  return value.replace(re, '<span class="highlight">$&</span>');
+}
+
+export function WordsList({ words, highlight, onWordClick }: WordProps) {
   function renderWord(word: Word): JSX.Element {
     const itemClassName = classes('word', { deleted: word.deleted });
+
+    let { text, translation } = word;
+
+    if (highlight) {
+      text = wrapHighlight(text, highlight);
+      translation = wrapHighlight(translation, highlight);
+    }
+
     return (
       <div className={itemClassName} key={word._id}
         onClick={() => !word.deleted && onWordClick(word)}>
-        <span className="word-text">{word.text}</span>
-        {word.translation && <span className="word-translation">{' / '}{word.translation}</span>}
+        <span className="word-text" dangerouslySetInnerHTML={{ __html: text }} />
+        {translation && (
+          <span className="word-translation">
+            {' / '}
+            <span dangerouslySetInnerHTML={{ __html: translation }} />
+          </span>
+        )}
       </div>
     )
   }
