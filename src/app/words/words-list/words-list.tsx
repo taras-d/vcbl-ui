@@ -4,7 +4,7 @@ import './words-list.less';
 
 interface WordProps {
   words: Word[];
-  highlight: string;
+  highlight?: string;
   onWordClick: (word: Word) => void;
 }
 
