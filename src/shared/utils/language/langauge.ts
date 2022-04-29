@@ -7,17 +7,15 @@ declare global {
   }
 }
 
-const dictPromise = window.__lang;
-delete window.__lang;
-
 let dict: Record<string, string>;
 
 function init(): Promise<void> {
-  return dictPromise
-    .then((res: Record<string, unknown>) => {
-      dict = flattenObject(res) as Record<string, string>;
-      return null;
-    });
+  const promise = window.__lang;
+  delete window.__lang;
+  return promise.then((res: Record<string, unknown>) => {
+    dict = flattenObject(res) as Record<string, string>;
+    return null;
+  });
 }
 
 function get(): TranslateLang {
