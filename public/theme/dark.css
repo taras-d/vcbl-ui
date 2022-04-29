@@ -1,8 +1,11 @@
 :root {
   --text-color: #ececec;
+  --text-highlight-color: #32cd32;
   --page-background: #454545;
   
   --primary-color: #ececec;
   --primary-color-light: #5a5959;
   --secondary-color: #373737;
+
+  --border-color: #aaaaaa;
 }

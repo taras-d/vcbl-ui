@@ -9,7 +9,7 @@
     overflow-wrap: break-word;
 
     &:not(:last-child) {
-      border-bottom: 1px dashed gray;
+      border-bottom: 1px dashed @border-color;
     }
     &:not(.deleted):hover {
       background-color: @primary-color-light;
@@ -30,6 +30,6 @@
   }
 
   .highlight {
-    color: green;
+    color: @text-highlight-color;
   }
 }
