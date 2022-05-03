@@ -50,7 +50,7 @@ export function Modal({
 
   function handleModalClick(event: React.MouseEvent): void {
     const target = event.target as  HTMLElement;
-    if (closeByBackdrop && onClose && !target.closest('.modal-box')) {
+    if (closeByBackdrop && onClose && target.isConnected && !target.closest('.modal-box')) {
       onClose();
     }
   }
