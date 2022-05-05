@@ -7,3 +7,5 @@ export * from './alert-container/alert-container';
 export * from './select/select';
 export * from './close-icon/close-icon';
 export * from './no-data/no-data';
+export * from './language/language-provider';
+export * from './language/translate';

@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './styles/index.less';
+import { LanguageProvider } from '@shared/ui';
 import { App } from './app/app';
-import { language } from '@shared/utils';
 
-language.init().then(() => {
-  ReactDOM.render(
-    <React.StrictMode>
+ReactDOM.render(
+  <React.StrictMode>
+    <LanguageProvider>
       <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-});
+    </LanguageProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);

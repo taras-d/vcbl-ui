@@ -1,3 +1,3 @@
-export type TranslateLang = 'en' | 'uk';
-
 export type Theme = 'default' | 'dark';
+
+export type LanagugeDictionary = Record<string, string>;
