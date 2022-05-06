@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
 
-import { Modal, Input, Button, CloseIcon } from '@shared/ui';
-import { events, tkey } from '@shared/utils';
+import { Modal, Input, Button, CloseIcon, Translate } from '@shared/ui';
+import { events } from '@shared/utils';
 import { EventTypes, NewWord, ApiResponse, Word, WordCreateResponse } from '@shared/interfaces';
-import { useAbortController } from '@shared/hooks';
+import { useAbortController, useTranslate } from '@shared/hooks';
 import { wordsApi } from '@shared/api';
 import './word-create.less';
 
@@ -12,6 +12,7 @@ export interface WordCreateProps {
 }
 
 export function WordCreate({ onCreated }: WordCreateProps) {
+  const translate = useTranslate();
   const abortCreate = useAbortController();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -86,7 +87,7 @@ export function WordCreate({ onCreated }: WordCreateProps) {
           <Input
             value={word.text}
             name="text"
-            placeholder={tkey('wordCreate.textHolder')}
+            placeholder={translate('wordCreate.textHolder')}
             disabled={loading}
             onChange={event => handleInputChange(event, index)}
             onFocus={() => handleInputFocus(index)}
@@ -96,7 +97,7 @@ export function WordCreate({ onCreated }: WordCreateProps) {
           <Input
             value={word.translation}
             name="translation"
-            placeholder={tkey('wordCreate.translationHolder')}
+            placeholder={translate('wordCreate.translationHolder')}
             disabled={loading}
             maxLength={100}
             onChange={event => handleInputChange(event, index)}
@@ -119,12 +120,15 @@ export function WordCreate({ onCreated }: WordCreateProps) {
   return open && (
     <Modal
       className="word-create"
-      header={tkey('wordCreate.title')}
+      header={<Translate value="wordCreate.title" />}
       onClose={handleModalClose}>
       <form autoComplete="off" onSubmit={handleSubmit}>
         {words.map(renderWord)}
         <div className="save-button">
-          <Button text={tkey('wordCreate.save')} disabled={!valid} loading={loading}/>
+          <Button 
+            text={<Translate value="wordCreate.save" />}
+            disabled={!valid}
+            loading={loading} />
         </div>
       </form>
     </Modal>
