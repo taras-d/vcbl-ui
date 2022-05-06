@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import { Word, EventTypes, ApiResponse } from '@shared/interfaces';
-import { Spinner, Button, Modal, NoData } from '@shared/ui';
-import { tkey, events } from '@shared/utils';
+import { Spinner, Button, Modal, NoData, Translate } from '@shared/ui';
+import { events } from '@shared/utils';
 import { wordsApi } from '@shared/api';
-import { useAbortController } from '@shared/hooks';
+import { useAbortController, useTranslate } from '@shared/hooks';
 import { WordsList } from '../words/words-list/words-list';
 import { WordActions } from '../words/word-actions/word-actions';
 import './random-words.less';
 
 export function RandomWords() {
+  const translate = useTranslate();
   const dataAbort = useAbortController();
   const [data, setData] = useState<Word[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +33,7 @@ export function RandomWords() {
         }
         
         if (res.status === 400) {
-          Modal.alert({ text: tkey('randomWords.notEnoughWords')})
+          Modal.alert({ text: translate('randomWords.notEnoughWords')})
         }
         setLoading(false);
       });
@@ -69,7 +70,7 @@ export function RandomWords() {
         <div className="refresh">
           <Button
             loading={loading}
-            text={tkey('randomWords.refresh')}
+            text={<Translate value="randomWords.refresh" />}
             onClick={handleRefreshClick}
           />
         </div>

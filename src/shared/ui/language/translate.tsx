@@ -8,5 +8,8 @@ export interface TranslateProps {
 
 export function Translate({ value, replace = [] }: TranslateProps) {
   const translate = useTranslate();
-  return translate(value, ...replace);
+
+  const text = translate(value, ...replace);
+
+  return text ? <>{text}</> : <span className="translate">{text}</span>;
 }
