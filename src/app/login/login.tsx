@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { Input, Button, Modal } from '@shared/ui';
+import { Input, Button, Modal, Translate } from '@shared/ui';
 import { ApiResponse } from "@shared/interfaces";
 import { authApi } from '@shared/api';
-import { useAbortController } from "@shared/hooks";
-import { tkey } from "@shared/utils";
+import { useAbortController, useTranslate } from "@shared/hooks";
 import './login.less';
 
 export function Login() {
+  const translate = useTranslate();
   const [data, setData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const loginAbort = useAbortController();
@@ -32,8 +32,8 @@ export function Login() {
 
         if (res.status === 401) {
           Modal.alert({
-            title: tkey('login.failedTitle'),
-            text: tkey('login.failedText')
+            title: translate('login.failedTitle'),
+            text: translate('login.failedText')
           });
         }
         
@@ -47,21 +47,27 @@ export function Login() {
   
   return (
     <form className="login" autoCapitalize="off" onSubmit={handleSubmit}>
-      <div className="login-header">{tkey('login.header')}</div>
+      <div className="login-header">
+        <Translate value="login.header" />
+      </div>
       <Input
         name="email"
-        placeholder={tkey('login.emailHolder')}
+        placeholder={translate('login.emailHolder')}
         value={data.email}
         onChange={handleChange}
       />
       <Input
         name="password"
-        placeholder={tkey('login.passwordHolder')}
+        placeholder={translate('login.passwordHolder')}
         type="password"
         value={data.password}
         onChange={handleChange}
       />
-      <Button text={tkey('login.submit')} disabled={!canSubmit()} loading={loading}/>
+      <Button
+        text={<Translate value="login.submit" />} 
+        disabled={!canSubmit()}
+        loading={loading}
+      />
     </form>
   );
 }
