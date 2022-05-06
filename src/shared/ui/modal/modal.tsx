@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
-import { classes, events, tkey } from '@shared/utils';
+import { classes, events } from '@shared/utils';
 import { EventTypes, AlertOptions } from '@shared/interfaces';
 import { CloseIcon } from '@shared/ui';
 import './modal.less';
