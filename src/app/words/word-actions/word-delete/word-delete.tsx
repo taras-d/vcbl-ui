@@ -2,10 +2,9 @@
 import { useState } from 'react';
 
 import { Word } from '@shared/interfaces';
-import { Modal, Button } from '@shared/ui';
+import { Modal, Button, Translate } from '@shared/ui';
 import { useAbortController } from '@shared/hooks';
 import { wordsApi } from '@shared/api';
-import { tkey } from '@shared/utils';
 import './word-delete.less';
 
 interface WordDelete {
@@ -34,15 +33,15 @@ export function WordDelete({ word, onClose, onDeleted }: WordDelete) {
   return (
     <Modal
       className="word-delete"
-      header={tkey('wordDel.title')}
+      header={<Translate value="wordDel.title" />}
       onClose={onClose}
     >
       <div className="delete-message">
-        {tkey('wordDel.text', word.text)}
+        {<Translate value="wordDel.text" replace={[word.text]} />}
       </div>
       <div className="delete-buttons">
-        <Button text={tkey('wordDel.yes')} onClick={handleYesClick} loading={loading}/>
-        <Button text={tkey('wordDel.no')} onClick={onClose} disabled={loading}/>
+        <Button text={<Translate value="wordDel.yes" />} onClick={handleYesClick} loading={loading}/>
+        <Button text={<Translate value="wordDel.no" />} onClick={onClose} disabled={loading}/>
       </div>
     </Modal>
   );
