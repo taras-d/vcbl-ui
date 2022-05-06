@@ -7,5 +7,3 @@ export * from './events/events';
 export * from './theme/theme';
 export * from './object/object';
 export * from './regex/regex';
-
-export function tkey(k: string, ...a: unknown[]) { return  '' }; // TODO remove

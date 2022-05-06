@@ -1,6 +1,14 @@
+export type Theme = 'default' | 'dark';
+
+export type LanagugeDictionary = Record<string, string>;
+
+export type TranslateWrapFn = (
+  translate: (value: string, ...replace: unknown[]) => string
+) => string;
+
 export interface AlertOptions {
-  title?: string;
-  text: string;
+  title?: string | TranslateWrapFn;
+  text?: string | TranslateWrapFn;
 }
 
 export interface User {

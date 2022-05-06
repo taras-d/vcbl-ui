@@ -78,9 +78,13 @@ export function Modal({
   return ReactDOM.createPortal(modal, document.body);
 }
 
-Modal.alert = (options: AlertOptions): void => {
+Modal.alert = (options: AlertOptions = {}): void => {
   if (!options.title) {
-    options.title = tkey('misc.defErrTitle');
+    options.title = translate => translate('misc.defErrTitle');
+  }
+
+  if (!options.text) {
+    options.text = translate => translate('misc.defErrText');
   }
 
   events.trigger(EventTypes.showAlert, options);

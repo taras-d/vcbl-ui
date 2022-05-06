@@ -3,7 +3,7 @@ import {
   ApiResponse,
 } from '@shared/interfaces';
 import { Modal } from '@shared/ui';
-import { storage, tkey } from '@shared/utils';
+import { storage } from '@shared/utils';
 import { authApi } from '@shared/api';
 
 const apiUrl = 'https://vcbl-api.herokuapp.com';
@@ -48,7 +48,7 @@ function handleError(error: Error | ApiResponse, params: ApiRequest): Promise<Ap
     if (isSessionInvalid(apiResponse, params)) {
       authApi.logout();
     } else if (!params.hideDefaultError) {
-      Modal.alert({ text: tkey('misc.defErrText') });
+      Modal.alert();
     }
   }
 
