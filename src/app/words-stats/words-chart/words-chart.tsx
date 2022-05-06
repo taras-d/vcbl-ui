@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { tkey } from '@shared/utils';
+import { useTranslate } from "@shared/hooks";
 import './words-chart.less';
 
 interface WordsChartProps {
@@ -8,13 +8,14 @@ interface WordsChartProps {
 }
 
 export function WordsChart({ data }: WordsChartProps) {
+  const translate = useTranslate();
   const max = useMemo(() => Math.max(...data), [data]);
 
   return (
     <div className="words-chart">
       <ul className="month">
         {data.map((_, index: number) => 
-          <li key={index}>{tkey('misc.month')[index]}</li>
+          <li key={index}>{translate('misc.month')[index]}</li>
         )}
       </ul>
       <ul className="progress">
