@@ -68,8 +68,8 @@
     "lang-en": "Англійська",
     "lang-uk": "Українська",
     "theme": "Тема",
-    "themeDefault": "Стандартна",
-    "themeDark": "Темна",
+    "theme-default": "Стандартна",
+    "theme-dark": "Темна",
     "logout": "Вийти"
   },
 

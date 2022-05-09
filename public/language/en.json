@@ -68,8 +68,8 @@
     "lang-en": "English",
     "lang-uk": "Ukrainian",
     "theme": "Theme",
-    "themeDefault": "Default",
-    "themeDark": "Dark",
+    "theme-default": "Default",
+    "theme-dark": "Dark",
     "logout": "Logout"
   },
 

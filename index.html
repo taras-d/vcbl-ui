@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
     <link rel="stylesheet" href="" id="theme" />
 
-    <script>
-      (function() {
-        let theme = localStorage.getItem('vcbl_theme');
-        theme = /^(default|dark)$/.test(theme) ? theme : 'default';
-        document.getElementById('theme').href = `theme/${theme}.css`;
-      }());
-    </script>
-
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vocabulary</title>
   </head>
   <body>

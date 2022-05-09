@@ -1,18 +1,31 @@
 import { storage } from '@shared/utils';
-import { Theme } from '@shared/interfaces';
 
-const themeLink = document.getElementById('theme') as HTMLLinkElement;
+const themes = ['default', 'dark'];
 
-function get(): Theme {
-  return storage.get('theme') as Theme || 'default';
+const linkEl = document.getElementById('theme') as HTMLLinkElement;
+
+let current = getStoredTheme();
+
+function getStoredTheme(): string {
+  const val = storage.get('theme') as string;
+  return themes.includes(val) ? val : themes[0]; 
 }
 
-function set(theme: Theme): void {
-  storage.set('theme', theme);
-  themeLink.href = `theme/${theme}.css`;
+function changeLink(theme: string): void {
+  linkEl.href = `theme/${theme}.css`;
 }
 
 export const theme = {
-  get,
-  set,
+  themes,
+  init(): void {
+    changeLink(current);
+  },
+  change(theme: string): void {
+    current = theme;
+    storage.set('theme', current);
+    changeLink(current);
+  },
+  get current(): string {
+    return current;
+  }
 }

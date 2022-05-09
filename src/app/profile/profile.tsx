@@ -3,13 +3,12 @@ import React, { useMemo, useState, useContext } from 'react';
 import { Input, Select, Button, Translate, LanguageContext } from '@shared/ui';
 import { currentUser, formatDate, theme } from '@shared/utils';
 import { authApi } from '@shared/api/auth-api';
-import { Theme } from '@shared/interfaces';
 
 import './profile.less';
 
 export function Profile() {
   const language = useContext(LanguageContext);
-  const [themeVal, setThemeVal] = useState<Theme>(theme.get());
+  const [themeVal, setThemeVal] = useState(theme.current);
 
   const user = currentUser.user;
 
@@ -23,9 +22,9 @@ export function Profile() {
   }
 
   function handleThemeChange(event: React.ChangeEvent<HTMLSelectElement>): void {
-    const value = event.target.value as Theme;
+    const value = event.target.value;
     setThemeVal(value);
-    theme.set(value);
+    theme.change(value);
   }
 
   function handleLogoutClick(): void {
@@ -78,12 +77,11 @@ export function Profile() {
         </div>
         <div className="col-9">
           <Select value={themeVal} onChange={handleThemeChange}>
-            <option value="default">
-              <Translate value="profile.themeDefault" />
-            </option>
-            <option value="dark">
-              <Translate value="profile.themeDark" />
-            </option>
+            {theme.themes.map((item: string) => 
+              <option value={item} key={item}>
+                <Translate value={`profile.theme-${item}`} />
+              </option>
+            )}
           </Select>
         </div>
       </div>
