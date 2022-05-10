@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { AppRoutes } from '@shared/interfaces';
-import { history, currentUser } from '@shared/utils';
+import { history, storage } from '@shared/utils';
 
 interface RouteProps {
   render?: JSX.Element;
@@ -13,7 +13,7 @@ export function Route({ render, redirect, access }: RouteProps) {
   const [node, setNode] = useState<JSX.Element>(null);
 
   useEffect(() => {
-    const loggedIn = !!currentUser.user;
+    const loggedIn = !!storage.get('token');
 
     if (redirect) {
       history.push(redirect);
