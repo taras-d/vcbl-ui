@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="" id="theme" />
 
     <title>Vocabulary</title>
+
+    <script>
+      if (location.hostname !== 'localhost' && navigator.serviceWorker) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
