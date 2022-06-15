@@ -7,6 +7,7 @@ const assetsToCache = [
   /\/assets\/vendor\.\w+\.js$/,
   /\/theme\/\w+\.css$/,
   /\/language\/\w+\.json$/,
+  /\/favicon\.png$/,
 ];
 
 addEventListener('install', event => {
