@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "npm run dev",
-    "deploy": "npm run build && cp dist/index.html dist/200.html && node scripts/minify-json.js && surge dist vcbl.surge.sh"
+    "deploy": "npm run build && cp dist/index.html dist/200.html && node scripts/minify-json.js && surge dist https://vcbl.surge.sh"
   },
   "dependencies": {
     "preact": "^10.7.1",
