@@ -1,7 +1,12 @@
+@import 'variables';
+
 .words-search {
   position: relative;
   .input {
     padding-right: 28px;
+    &:focus {
+      background-color: @page-background;
+    }
   }
   .clear-search {
     position: absolute;
