@@ -1,5 +1,5 @@
 const cachePrefix = 'assets';
-const cacheVersion = 2;
+const cacheVersion = 3;
 const cacheName = `${cachePrefix}-${cacheVersion}`;
 
 const assetsToCache = [
