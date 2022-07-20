@@ -19,10 +19,8 @@ function createLink(theme: string): void {
   link.href = `theme/${theme}.css`;
   link.rel = 'stylesheet';
   link.onload = () => {
-    const primaryColor = getComputedStyle(document.body).getPropertyValue('--primary-color');
-    if (primaryColor) {
-      browserThemeColor.content = primaryColor.trimStart();
-    }
+    const primaryColor = getComputedStyle(document.body).getPropertyValue('--browser-theme-color')?.trimStart();
+    browserThemeColor.content = primaryColor || '';
   }
   document.head.append(link);
 }

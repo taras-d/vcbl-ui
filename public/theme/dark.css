@@ -8,4 +8,6 @@
   --secondary-color: #373737;
 
   --border-color: #aaaaaa;
+
+  --browser-theme-color: var(--secondary-color);
 }
