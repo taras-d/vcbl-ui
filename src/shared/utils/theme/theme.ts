@@ -1,8 +1,7 @@
 import { storage } from '@shared/utils';
 
 const themes = ['default', 'dark'];
-
-const linkEl = document.getElementById('theme') as HTMLLinkElement;
+const browserThemeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
 
 let current = getStoredTheme();
 
@@ -11,19 +10,32 @@ function getStoredTheme(): string {
   return themes.includes(val) ? val : themes[0]; 
 }
 
-function changeLink(theme: string): void {
-  linkEl.href = `theme/${theme}.css`;
+function createLink(theme: string): void {
+  let link = document.getElementById('theme') as HTMLLinkElement;
+  link?.remove();
+
+  link = document.createElement('link');
+  link.id = 'theme';
+  link.href = `theme/${theme}.css`;
+  link.rel = 'stylesheet';
+  link.onload = () => {
+    const primaryColor = getComputedStyle(document.body).getPropertyValue('--primary-color');
+    if (primaryColor) {
+      browserThemeColor.content = primaryColor.trimStart();
+    }
+  }
+  document.head.append(link);
 }
 
 export const theme = {
   themes,
   init(): void {
-    changeLink(current);
+    createLink(current);
   },
   change(theme: string): void {
+    createLink(theme);
     current = theme;
     storage.set('theme', current);
-    changeLink(current);
   },
   get current(): string {
     return current;
